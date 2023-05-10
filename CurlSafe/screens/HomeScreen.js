@@ -1,26 +1,54 @@
 import React from "react";
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
-import {faCamera, faImages} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCamera, faImages } from "@fortawesome/free-solid-svg-icons";
 import {
+  FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+const DATA = [
+  {
+    id: "12",
+    title: "Take A Picture",
+    icon: faCamera,
+    screen: "Camera",
+  },
+  {
+    id: "23",
+    title: "Choose From Gallery",
+    icon: faImages,
+    screen: "Gallery",
+  },
+];
+
 const HomeScreen = () => {
   return (
-    <View>
-        <Text>Curl Safe</Text>
-        <FontAwesomeIcon icon={faCamera} style={styles.icons}/>
-        <FontAwesomeIcon icon={faImages} style={styles.icons}/>
-    </View>
+    <FlatList
+      data={DATA}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <TouchableOpacity style={styles.container}>
+          <View>
+            <FontAwesomeIcon icon={item.icon} style={styles.icons} size={70}/>
+            <Text>{item.title}</Text>
+          </View>
+        </TouchableOpacity>
+      )}
+    />
   );
 };
-
-export default HomeScreen;
 
 const styles = StyleSheet.create({
   icons: {
     color: "#f7ca28",
-  }
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "grey",
+
+  },
 });
+
+export default HomeScreen;
