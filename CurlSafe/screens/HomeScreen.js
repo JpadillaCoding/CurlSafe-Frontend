@@ -1,54 +1,24 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faCamera, faImages } from "@fortawesome/free-solid-svg-icons";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-const DATA = [
-  {
-    id: "12",
-    title: "Take A Picture",
-    icon: faCamera,
-    screen: "Camera",
-  },
-  {
-    id: "23",
-    title: "Choose From Gallery",
-    icon: faImages,
-    screen: "Gallery",
-  },
-];
+import HomeNav from "../components/HomeNav";
+import { View,Text,StyleSheet } from "react-native";
+
 
 const HomeScreen = () => {
   return (
-    <FlatList
-      data={DATA}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <TouchableOpacity style={styles.container}>
-          <View>
-            <FontAwesomeIcon icon={item.icon} style={styles.icons} size={70}/>
-            <Text>{item.title}</Text>
-          </View>
-        </TouchableOpacity>
-      )}
-    />
+    <View >
+      <View>
+        <Text style={styles.title}>Curl Safe</Text>
+      </View>
+      <HomeNav />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  icons: {
-    color: "#f7ca28",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "grey",
-
-  },
-});
+  title: {
+    textAlign: "center",
+    padding: 20,
+  }
+})
 
 export default HomeScreen;
