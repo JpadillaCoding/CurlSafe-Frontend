@@ -1,10 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View} from "react-native";
-
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome'
+import {faCamera, faImages} from '@fortawesome/free-solid-svg-icons'
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 const HomeScreen = () => {
   return (
-    <View >
-      <Text>Home screen component</Text>
+    <View>
+        <Text>Curl Safe</Text>
+        <FontAwesomeIcon icon={faCamera} style={styles.icons}/>
+        <FontAwesomeIcon icon={faImages} style={styles.icons}/>
     </View>
   );
 };
@@ -12,5 +20,7 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-
+  icons: {
+    color: "#f7ca28",
+  }
 });

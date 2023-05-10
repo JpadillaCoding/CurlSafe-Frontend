@@ -12,17 +12,17 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-          <SafeAreaView style={styles.AndroidSafeArea}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="HomeScreen"
-            component={HomeScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Stack.Navigator>
-          </SafeAreaView>
+        <SafeAreaView style={styles.AndroidSafeArea}>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="HomeScreen"
+              component={HomeScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Navigator>
+        </SafeAreaView>
       </NavigationContainer>
     </Provider>
   );
