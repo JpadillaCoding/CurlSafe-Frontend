@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native/types";
+import { View, Text, StyleSheet } from "react-native";
 
 
-const Camera = () => {
+const GalleryScreen = () => {
     return (
         <View>
 
@@ -14,4 +14,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Camera
+export default GalleryScreen

@@ -1,14 +1,32 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { Provider } from "react-redux";
-import { store } from "./store";
+import { Provider } from "react-redux"; //redux
+import { store } from "./store"; //redux
 import HomeScreen from "./screens/HomeScreen";
+import CameraScreen from "./screens/CameraScreen";
+import GalleryScreen from "./screens/GalleryScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useEffect, useState } from "react";
+import { Camera } from "expo-camera";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+
+  const [hasCameraPermission, setHasCameraPermission] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const cameraStatus = await Camera.requestCameraPermissionsAsync();
+      setHasCameraPermission(cameraStatus.status === "granted");
+    })();
+  }, []);
+
+  if (hasCameraPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -17,6 +35,20 @@ export default function App() {
             <Stack.Screen
               name="HomeScreen"
               component={HomeScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="CameraScreen"
+              component={CameraScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="GalleryScreen"
+              component={GalleryScreen}
               options={{
                 headerShown: false,
               }}

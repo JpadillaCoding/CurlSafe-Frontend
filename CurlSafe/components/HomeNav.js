@@ -8,28 +8,30 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 const DATA = [
   {
     id: "12",
     title: "Take A Picture",
     icon: faCamera,
-    screen: "Camera",
+    screen: "CameraScreen",
   },
   {
     id: "23",
     title: "Choose From Gallery",
     icon: faImages,
-    screen: "Gallery",
+    screen: "GalleryScreen",
   },
 ];
 
 const HomeNav = () => {
+  const  naviagtion = useNavigation()
   return (
     <FlatList
       data={DATA}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => naviagtion.navigate(item.screen)}>
           <View style={styles.container}>
             <FontAwesomeIcon icon={item.icon} style={styles.icons} size={70} />
             <Text>{item.title}</Text>
