@@ -12,7 +12,7 @@ import {
 const CameraScreen = () => {
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
-  const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
+  const [flash, setFlash] = useState(Camera.Constants.FlashMode.on);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const cameraRef = useRef(null);
 
@@ -41,11 +41,19 @@ const CameraScreen = () => {
     alert("yooo");
   };
   const flipCamera = () => {
-    if(type == 0) {
+    if(type === 0) {
       setType(1)
     }
     else {
       setType(0)
+    }
+  }
+  const toggleFlash = () => {
+    if(flash === Camera.Constants.FlashMode.off) {
+      setFlash(Camera.Constants.FlashMode.on)
+    }
+    else {
+      setFlash(Camera.Constants.FlashMode.off)
     }
   }
 
@@ -64,7 +72,7 @@ const CameraScreen = () => {
         >
           <View style={styles.buttonContainer}>
             <Button icon={faRepeat} color={"#f7ca28"} onPress={flipCamera}/>
-            <Button icon={faBolt} color={"#f7ca28"}/>
+            <Button icon={faBolt} color={"#f7ca28"} onPress={toggleFlash}/>
           </View>
         </Camera>
       ) : (
