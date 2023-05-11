@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet} from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux"; //redux
 import { store } from "./store"; //redux
@@ -16,6 +16,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaView style={styles.AndroidSafeArea}>
+          <StatusBar translucent={true}/>
           <Stack.Navigator>
             <Stack.Screen
               name="HomeScreen"
@@ -50,4 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
+  container: {
+    backgroundColor: "red"
+  }
 });

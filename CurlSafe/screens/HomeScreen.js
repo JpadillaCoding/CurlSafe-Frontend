@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 const HomeScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <View>
         <Text style={styles.title}>Curl Safe</Text>
       </View>
@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 20,
   },
+  container: {
+    backgroundColor: "red",
+    flex: 1,
+  },  
 });
 
 export default HomeScreen;
