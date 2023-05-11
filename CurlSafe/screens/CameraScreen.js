@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Camera } from "expo-camera";
 import Button from "../components/Button";
-import { faCamera, faRepeat } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faRepeat, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const CameraScreen = () => {
   const [image, setImage] = useState(null);
@@ -29,6 +29,9 @@ const CameraScreen = () => {
       }
     }
   };
+  const retakePicture = () => {
+    setImage(null)
+  }
 
   if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
@@ -36,21 +39,27 @@ const CameraScreen = () => {
 
   return (
     <View style={styles.container}>
-      {!image ? (
+      {!image ? 
+      (
         <Camera
           type={type}
           flashMode={flash}
           ref={cameraRef}
           style={styles.camera}
         ></Camera>
-      ) : (
+      ) 
+      :
+      (
         <View style={styles.container}>
           <Image source={{ uri: image }} style={styles.camera} />
         </View>
       )}
       <View>
-        {image ? (
-          <Button title={"Re-take"} icon={faRepeat} color={"#f7ca28"} />
+        {image ? 
+        (
+          <View>
+            <Button title={"Re-take"} icon={faRepeat} color={"#f7ca28"} onPress={retakePicture}/>
+          </View>
         ) 
         :
         (
