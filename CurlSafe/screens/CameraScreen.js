@@ -6,7 +6,7 @@ import {
   faCamera,
   faRepeat,
   faPaperPlane,
-  faBolt
+  faBolt,
 } from "@fortawesome/free-solid-svg-icons";
 
 const CameraScreen = () => {
@@ -27,7 +27,6 @@ const CameraScreen = () => {
     if (cameraRef) {
       try {
         const data = await cameraRef.current.takePictureAsync();
-        console.log(data);
         setImage(data.uri);
       } catch (error) {
         console.log(error);
@@ -41,21 +40,19 @@ const CameraScreen = () => {
     alert("yooo");
   };
   const flipCamera = () => {
-    if(type === 0) {
-      setType(1)
+    if (type === 0) {
+      setType(1);
+    } else {
+      setType(0);
     }
-    else {
-      setType(0)
-    }
-  }
+  };
   const toggleFlash = () => {
-    if(flash === Camera.Constants.FlashMode.off) {
-      setFlash(Camera.Constants.FlashMode.on)
+    if (flash === Camera.Constants.FlashMode.off) {
+      setFlash(Camera.Constants.FlashMode.on);
+    } else {
+      setFlash(Camera.Constants.FlashMode.off);
     }
-    else {
-      setFlash(Camera.Constants.FlashMode.off)
-    }
-  }
+  };
 
   if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
@@ -71,8 +68,8 @@ const CameraScreen = () => {
           style={styles.camera}
         >
           <View style={styles.buttonContainer}>
-            <Button icon={faRepeat} color={"#f7ca28"} onPress={flipCamera}/>
-            <Button icon={faBolt} color={"#f7ca28"} onPress={toggleFlash}/>
+            <Button icon={faRepeat} color={"#f7ca28"} onPress={flipCamera} />
+            <Button icon={faBolt} color={"#f7ca28"} onPress={toggleFlash} />
           </View>
         </Camera>
       ) : (
