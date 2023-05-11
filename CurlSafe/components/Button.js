@@ -1,12 +1,12 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native/types";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-const Button({title, onPress, icon, color}) => {
+const Button = ({title, onPress, icon, color}) => {
     return(
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={onPress} style={styles.button}>
             <FontAwesomeIcon icon={icon} color={color} size={30}/>
-            <Text>{title}</Text>
+            <Text style={styles.text}>{title}</Text>
         </TouchableOpacity>
     )
 }
@@ -17,5 +17,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    },
+    text: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: 'white',
+        marginLeft: 10
     }
 })
+
+export default Button

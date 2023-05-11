@@ -1,15 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux"; //redux
 import { store } from "./store"; //redux
+import { SafeAreaView } from "react-native-safe-area-context";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import CameraScreen from "./screens/CameraScreen";
 import GalleryScreen from "./screens/GalleryScreen";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
-import { Camera } from "expo-camera";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -46,10 +44,9 @@ export default function App() {
     </Provider>
   );
 }
-//creating homepage
 
 const styles = StyleSheet.create({
-  AndroidSafeArea: {
+  AndroidSafeArea: { //sets safeArea for android, SAfeAreaView already works for ios
     flex: 1,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
