@@ -14,19 +14,6 @@ import { Camera } from "expo-camera";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
-  const [hasCameraPermission, setHasCameraPermission] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const cameraStatus = await Camera.requestCameraPermissionsAsync();
-      setHasCameraPermission(cameraStatus.status === "granted");
-    })();
-  }, []);
-
-  if (hasCameraPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-
   return (
     <Provider store={store}>
       <NavigationContainer>
