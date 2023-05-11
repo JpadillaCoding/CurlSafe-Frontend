@@ -1,14 +1,24 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import HomeNav from "../components/HomeNav";
+import { View,Text,StyleSheet } from "react-native";
+
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView>
-      <Text>Home screen component</Text>
-    </SafeAreaView>
+    <View >
+      <View>
+        <Text style={styles.title}>Curl Safe</Text>
+      </View>
+      <HomeNav />
+    </View>
   );
 };
 
-export default HomeScreen;
+const styles = StyleSheet.create({
+  title: {
+    textAlign: "center",
+    padding: 20,
+  }
+})
 
-const styles = StyleSheet.create({});
+export default HomeScreen;
