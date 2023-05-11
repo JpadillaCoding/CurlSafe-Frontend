@@ -32,6 +32,9 @@ const CameraScreen = () => {
   const retakePicture = () => {
     setImage(null)
   }
+  const analyze = () => {
+    alert("yooo")
+  }
 
   if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
@@ -57,8 +60,9 @@ const CameraScreen = () => {
       <View>
         {image ? 
         (
-          <View>
+          <View style={styles.previewButtons}>
             <Button title={"Re-take"} icon={faRepeat} color={"#f7ca28"} onPress={retakePicture}/>
+            <Button title={"Analyze"} icon={faPaperPlane} color={"#f7ca28"} onPress={analyze}/>
           </View>
         ) 
         :
@@ -87,6 +91,11 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 10,
   },
+  previewButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20
+  }
 });
 
 export default CameraScreen;
