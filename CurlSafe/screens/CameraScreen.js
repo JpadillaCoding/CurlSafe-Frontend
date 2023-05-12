@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Camera } from "expo-camera";
 import Button from "../components/Button";
+import axios from "axios";
 import {
   faCamera,
   faRepeat,
@@ -36,8 +37,18 @@ const CameraScreen = () => {
   const retakePicture = () => {
     setImage(null);
   };
-  const analyze = () => {
-    alert("yooo");
+  const analyze = async () => {
+    const data = {
+      image: image
+    };
+    await axios
+      .post("https://ec41-198-190-156-241.ngrok-free.app/vision/analyzeImage", data)// change to deployed url
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const flipCamera = () => {
     if (type === 0) {
@@ -60,8 +71,7 @@ const CameraScreen = () => {
 
   return (
     <View style={styles.container}>
-      {!image ? 
-      (
+      {!image ? (
         <Camera
           type={type}
           flashMode={flash}
@@ -70,23 +80,22 @@ const CameraScreen = () => {
         >
           <View style={styles.buttonContainer}>
             <Button icon={faRepeat} color={"#fbd029"} onPress={flipCamera} />
-            <Button 
-            icon={faBolt} 
-            color={flash === Camera.Constants.FlashMode.on ? '#fbd029' : 'white'} 
-            onPress={toggleFlash} 
+            <Button
+              icon={faBolt}
+              color={
+                flash === Camera.Constants.FlashMode.on ? "#fbd029" : "white"
+              }
+              onPress={toggleFlash}
             />
           </View>
         </Camera>
-      ) 
-      :
-      (
+      ) : (
         <View style={styles.container}>
           <Image source={{ uri: image }} style={styles.camera} />
         </View>
       )}
       <View>
-        {image ? 
-        (
+        {image ? (
           <View style={styles.buttonContainer}>
             <Button
               title={"Re-take"}
@@ -101,9 +110,7 @@ const CameraScreen = () => {
               onPress={analyze}
             />
           </View>
-        ) 
-        :
-        (
+        ) : (
           <View style={styles.cameraContainer}>
             <Button
               title={"take a picture"}
