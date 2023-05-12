@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { Camera } from "expo-camera";
 import Button from "../components/Button";
 import axios from "axios";
+import FormData from "form-data";
 import {
   faCamera,
   faRepeat,
@@ -38,11 +39,19 @@ const CameraScreen = () => {
     setImage(null);
   };
   const analyze = async () => {
-    const data = {
-      image: image
-    };
+    const formData = new FormData();
+    formData.append("image", image);
+
     await axios
-      .post("https://ec41-198-190-156-241.ngrok-free.app/vision/analyzeImage", data)// change to deployed url
+      .post(
+        "https://c82a-198-190-156-241.ngrok-free.app/vision/analyzeImage",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      ) // change to deployed url
       .then((res) => {
         console.log(res);
       })
