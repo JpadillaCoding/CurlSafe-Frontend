@@ -40,8 +40,12 @@ const CameraScreen = () => {
   };
   const analyze = async () => {
     const formData = new FormData();
-    formData.append("image", image);
-
+    formData.append("image", {
+      uri: image,
+      type: 'image/jpeg',
+      name: 'image.jpg'
+    });
+    //api says there is no file being sent. added the uri, type, name to see fi that helps
     await axios
       .post(
         "https://c82a-198-190-156-241.ngrok-free.app/vision/analyzeImage",
