@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Camera } from "expo-camera";
 import Button from "../components/Button";
+import axios from "axios";
+import FormData from "form-data";
 import {
   faCamera,
   faRepeat,
@@ -36,8 +38,30 @@ const CameraScreen = () => {
   const retakePicture = () => {
     setImage(null);
   };
-  const analyze = () => {
-    alert("yooo");
+  const analyze = async () => {
+    const formData = new FormData();
+    formData.append("image", {
+      uri: image,
+      type: 'image/jpeg',
+      name: 'image.jpg'
+    });
+    //api says there is no file being sent. added the uri, type, name to see fi that helps
+    await axios
+      .post(
+        "https://c82a-198-190-156-241.ngrok-free.app/vision/analyzeImage",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      ) // change to deployed url
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const flipCamera = () => {
     if (type === 0) {
@@ -60,8 +84,7 @@ const CameraScreen = () => {
 
   return (
     <View style={styles.container}>
-      {!image ? 
-      (
+      {!image ? (
         <Camera
           type={type}
           flashMode={flash}
@@ -70,23 +93,22 @@ const CameraScreen = () => {
         >
           <View style={styles.buttonContainer}>
             <Button icon={faRepeat} color={"#fbd029"} onPress={flipCamera} />
-            <Button 
-            icon={faBolt} 
-            color={flash === Camera.Constants.FlashMode.on ? '#fbd029' : 'white'} 
-            onPress={toggleFlash} 
+            <Button
+              icon={faBolt}
+              color={
+                flash === Camera.Constants.FlashMode.on ? "#fbd029" : "white"
+              }
+              onPress={toggleFlash}
             />
           </View>
         </Camera>
-      ) 
-      :
-      (
+      ) : (
         <View style={styles.container}>
           <Image source={{ uri: image }} style={styles.camera} />
         </View>
       )}
       <View>
-        {image ? 
-        (
+        {image ? (
           <View style={styles.buttonContainer}>
             <Button
               title={"Re-take"}
@@ -101,9 +123,7 @@ const CameraScreen = () => {
               onPress={analyze}
             />
           </View>
-        ) 
-        :
-        (
+        ) : (
           <View style={styles.cameraContainer}>
             <Button
               title={"take a picture"}
