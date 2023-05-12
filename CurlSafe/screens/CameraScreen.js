@@ -12,7 +12,7 @@ import {
 const CameraScreen = () => {
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
-  const [flash, setFlash] = useState(Camera.Constants.FlashMode.on);
+  const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const cameraRef = useRef(null);
 
@@ -60,7 +60,8 @@ const CameraScreen = () => {
 
   return (
     <View style={styles.container}>
-      {!image ? (
+      {!image ? 
+      (
         <Camera
           type={type}
           flashMode={flash}
@@ -68,37 +69,46 @@ const CameraScreen = () => {
           style={styles.camera}
         >
           <View style={styles.buttonContainer}>
-            <Button icon={faRepeat} color={"#f7ca28"} onPress={flipCamera} />
-            <Button icon={faBolt} color={"#f7ca28"} onPress={toggleFlash} />
+            <Button icon={faRepeat} color={"#fbd029"} onPress={flipCamera} />
+            <Button 
+            icon={faBolt} 
+            color={flash === Camera.Constants.FlashMode.on ? '#fbd029' : 'white'} 
+            onPress={toggleFlash} 
+            />
           </View>
         </Camera>
-      ) : (
+      ) 
+      :
+      (
         <View style={styles.container}>
           <Image source={{ uri: image }} style={styles.camera} />
         </View>
       )}
       <View>
-        {image ? (
+        {image ? 
+        (
           <View style={styles.buttonContainer}>
             <Button
               title={"Re-take"}
               icon={faRepeat}
-              color={"#f7ca28"}
+              color={"#fbd029"}
               onPress={retakePicture}
             />
             <Button
               title={"Analyze"}
               icon={faPaperPlane}
-              color={"#f7ca28"}
+              color={"#fbd029"}
               onPress={analyze}
             />
           </View>
-        ) : (
+        ) 
+        :
+        (
           <View style={styles.cameraContainer}>
             <Button
               title={"take a picture"}
               icon={faCamera}
-              color={"#f7ca28"}
+              color={"#fbd029"}
               onPress={takePicture}
               style={styles.cameraButton}
             />
