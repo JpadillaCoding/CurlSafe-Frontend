@@ -54,7 +54,7 @@ const GalleryScreen = () => {
       {image ? (
         <View style={styles.container}>
           <View style={styles.container}>
-            <Image source={{ uri: image[0].uri }} style={styles.imageStyle} />
+            <Image source={{ uri: image }} style={styles.imageStyle} />
           </View>
           <View style={styles.buttonContainer}>
             <Button onPress={pickImage} icon={faRetweet} color={"#fbd029"} />
