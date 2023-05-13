@@ -45,10 +45,10 @@ const CameraScreen = () => {
       type: 'image/jpeg',
       name: 'image.jpg'
     });
-    //api says there is no file being sent. added the uri, type, name to see fi that helps
+    console.log(image)
     await axios
       .post(
-        "https://c82a-198-190-156-241.ngrok-free.app/vision/analyzeImage",
+        "https://d7a2-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/vision/analyzeImage",
         formData,
         {
           headers: {
