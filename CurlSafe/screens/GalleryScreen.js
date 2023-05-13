@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Button from "../components/Button";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
@@ -14,21 +14,35 @@ const GalleryScreen = () => {
       aspect: [4, 3],
       quality: 1,
     });
-    console.log(result);
 
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
+    setImage(result.assets);
   };
+  let imagePreview = <Text style={styles.previewText}>No image taken yet</Text>;
+
+  if (image) {
+    imagePreview = (
+      <Image source={{ uri: image[0].uri }} style={styles.imageStyle} />
+    );
+  }
 
   return (
-    <View>
-      <Button title={"Choose an image"} onPress={pickImage} color={"#f8b71c"} />
-      {image && (<Image source={{ uri: image }} style={{ width: 200, height: 200 }} icon={{faImage}}/>)}
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Button
+        title="Pick an image from camera roll"
+        onPress={pickImage}
+        icon={faImage}
+        color={"#fbd029"}
+      />
+      {imagePreview}
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  imageStyle: {
+    width: "100%",
+    height: "100%",
+  },
+});
 
 export default GalleryScreen;
