@@ -57,7 +57,8 @@ const CameraScreen = () => {
         }
       ) // change to deployed url
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data)
+        //state here
       })
       .catch((error) => {
         console.log(error);
