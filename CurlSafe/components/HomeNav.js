@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCamera, faImages } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -26,6 +26,7 @@ const DATA = [
 
 const HomeNav = () => {
   const  naviagtion = useNavigation()
+  const [results, setResults] = useState(null)
   return (
     <FlatList
       data={DATA}
@@ -38,6 +39,8 @@ const HomeNav = () => {
           </View>
         </TouchableOpacity>
       )}
+      results={results}
+      setResults={setResults}
     />
   );
 };
