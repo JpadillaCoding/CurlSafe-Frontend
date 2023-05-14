@@ -12,6 +12,6 @@ export const resultsSlice = createSlice({
   }
 })
 
-export const { setResults } = counterSlice.actions
+export const { setResults } = resultsSlice.actions
 
 export default resultsSlice.reducer
