@@ -4,14 +4,14 @@ import { Camera } from "expo-camera";
 import Button from "../components/Button";
 import axios from "axios";
 import FormData from "form-data";
-import {useDispatch,useSelector} from 'react-redux'
+import { useDispatch } from "react-redux";
+import { setResults } from "../slices/resultsSlice";
 import {
   faCamera,
   faRepeat,
   faPaperPlane,
   faBolt,
 } from "@fortawesome/free-solid-svg-icons";
-import { setResults } from "../slices/resultsSlice";
 
 const CameraScreen = () => {
   const [image, setImage] = useState(null);
@@ -19,8 +19,7 @@ const CameraScreen = () => {
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const cameraRef = useRef(null);
-  const dispatch = useDispatch()
-  const results = useSelector( state => state.results.value)
+  const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
@@ -45,10 +44,10 @@ const CameraScreen = () => {
     const formData = new FormData();
     formData.append("image", {
       uri: image,
-      type: 'image/jpeg',
-      name: 'image.jpg'
+      type: "image/jpeg",
+      name: "image.jpg",
     });
-    console.log("working on it...")
+    console.log("working on it...");
     await axios
       .post(
         "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/vision/analyzeImage",
@@ -60,7 +59,7 @@ const CameraScreen = () => {
         }
       ) // change to deployed url
       .then((res) => {
-        dispatch(setResults(res.data))
+        dispatch(setResults(res.data));
       })
       .catch((error) => {
         console.log(error);
@@ -84,7 +83,6 @@ const CameraScreen = () => {
   if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
   }
-  console.log(results)
 
   return (
     <View style={styles.container}>

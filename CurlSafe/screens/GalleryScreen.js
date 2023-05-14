@@ -4,6 +4,8 @@ import * as ImagePicker from "expo-image-picker";
 import Button from "../components/Button";
 import axios from "axios";
 import FormData from "form-data";
+import { useDispatch } from "react-redux";
+import { setResults } from "../slices/resultsSlice";
 import {
   faImage,
   faRetweet,
@@ -12,6 +14,8 @@ import {
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
+  const dispatch = useDispatch()
+  const results = useSelector( state => state.results.value)
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -42,7 +46,7 @@ const GalleryScreen = () => {
         }
       ) // change to deployed url
       .then((res) => {
-        console.log(res.data);
+        dispatch(setResults(res.data));
       })
       .catch((error) => {
         console.log(error);
