@@ -48,17 +48,20 @@ const DATA = [
 
 const AnalysisScreen = () => {
   const results = useSelector((state) => state.results.value);
-    results[0].split(",")
+  results.split(",")
   const ingredientDatabase = async () => {
     try {
       const response = await axios.get("https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/ingredients");
-      console.log(response.data);
+      response.data.forEach(ingredient => {
+        if(results.includes(ingredient.name)) {
+            console.log("Found: ", ingredient.name)
+        }
+    });
     } catch (error) {
       console.error(error);
     }
   };
   ingredientDatabase();
-  console.log(results);
   return (
     <FlatList
       data={DATA}
