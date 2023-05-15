@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import CameraScreen from "./screens/CameraScreen";
 import GalleryScreen from "./screens/GalleryScreen";
+import AnalysisScreen from "./screens/AnalysisScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -16,7 +17,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaView style={styles.AndroidSafeArea}>
-          <StatusBar translucent={true}/>
+          <StatusBar translucent={true} />
           <Stack.Navigator>
             <Stack.Screen
               name="HomeScreen"
@@ -39,6 +40,13 @@ export default function App() {
                 headerShown: false,
               }}
             />
+            <Stack.Screen
+              name="AnalysisScreen"
+              component={AnalysisScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
@@ -47,11 +55,12 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  AndroidSafeArea: { //sets safeArea for android, SAfeAreaView already works for ios
+  AndroidSafeArea: {
+    //sets safeArea for android, SAfeAreaView already works for ios
     flex: 1,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {
-    backgroundColor: "red"
-  }
+    backgroundColor: "red",
+  },
 });

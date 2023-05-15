@@ -4,14 +4,20 @@ import * as ImagePicker from "expo-image-picker";
 import Button from "../components/Button";
 import axios from "axios";
 import FormData from "form-data";
+import { useDispatch } from "react-redux";
+import { setResults } from "../slices/resultsSlice";
+import { useNavigation } from "@react-navigation/native";
 import {
   faImage,
   faRetweet,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
+import AnalysisScreen from "./AnalysisScreen";
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
+  const dispatch = useDispatch();
+  const navigation = useNavigation()
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -22,7 +28,6 @@ const GalleryScreen = () => {
     });
 
     setImage(result.assets[0].uri);
-    console.log(result.assets[0].uri);
   };
   const analyze = async () => {
     const formData = new FormData();
@@ -31,9 +36,10 @@ const GalleryScreen = () => {
       type: "image/jpeg",
       name: "image.jpeg",
     });
+    console.log("working on it..");
     await axios
       .post(
-        "https://d7a2-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/vision/analyzeImage",
+        "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/vision/analyzeImage",
         formData,
         {
           headers: {
@@ -42,7 +48,8 @@ const GalleryScreen = () => {
         }
       ) // change to deployed url
       .then((res) => {
-        console.log(res.data);
+        dispatch(setResults(res.data));
+        navigation.navigate('AnalysisScreen');
       })
       .catch((error) => {
         console.log(error);
