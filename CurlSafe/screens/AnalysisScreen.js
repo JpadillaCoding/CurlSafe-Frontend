@@ -17,50 +17,50 @@ const DATA = [
     id: "25",
     title: "sulfates",
     description: "insert text here1",
-    matches: {sulfates}
+    matches: sulfates
     
   },
   {
     id: "26",
     title: "silicones",
     description: "insert text here2",
-    matches: {silicones}
+    matches: silicones
   },
   {
     id: "28",
     title: "shortChainAlcohol",
     description: "insert text here3",
-    matches: {shortChainAlcohol}
+    matches: shortChainAlcohol
   },
   {
     id: "29",
     title: "parabens",
     description: "insert text here4",
-    matches: {parabens}
+    matches: parabens
   },
   {
     id: "30",
     title: "formaldehydes",
     description: "insert text here5",
-    matches:{formaldehydes}
+    matches: formaldehydes
   },
   {
     id: "31",
     title: "soaps",
     description: "insert text here6",
-    matches: {soaps}
+    matches: soaps
   },
   {
     id: "32",
     title: "wax",
     description: "insert text here7",
-    matches: {wax}
+    matches: wax
   },
   {
     id: "33",
     title: "mineralOil",
     description: "insert text here8",
-    matches: {mineralOil}
+    matches: mineralOil
   },
 ];
 
@@ -121,13 +121,23 @@ const AnalysisScreen = () => {
       data={DATA}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => {
-        <View>
-          <Text>{item.title}</Text>
-        </View>;
+        return (
+          <View style={styles.container}>
+            <Text>{item.title}</Text>
+            <Text>{item.matches}</Text>
+          </View>
+        );
       }}
-    ></FlatList>
+    />
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "grey",
+        margin: 5,
+        flex: 1,
+        alignItems: "center",
+      },
+});
 
 export default AnalysisScreen;
