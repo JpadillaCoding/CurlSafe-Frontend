@@ -3,55 +3,72 @@ import { View, Text, StyleSheet, FlatList } from "react-native/";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+const sulfates = []
+const silicones = []
+const shortChainAlcohol = []
+const parabens = []
+const formaldehydes = []
+const soaps = []
+const wax = []
+const mineralOil = []
+
 const DATA = [
   {
     id: "25",
-    title: "sulfate",
+    title: "sulfates",
     description: "insert text here1",
+    matches: {sulfates}
+    
   },
   {
     id: "26",
-    title: "silicone",
+    title: "silicones",
     description: "insert text here2",
+    matches: {silicones}
   },
   {
     id: "28",
     title: "shortChainAlcohol",
     description: "insert text here3",
+    matches: {shortChainAlcohol}
   },
   {
     id: "29",
     title: "parabens",
     description: "insert text here4",
+    matches: {parabens}
   },
   {
     id: "30",
-    title: "formaldehyde",
+    title: "formaldehydes",
     description: "insert text here5",
+    matches:{formaldehydes}
   },
   {
     id: "31",
-    title: "soap",
+    title: "soaps",
     description: "insert text here6",
+    matches: {soaps}
   },
   {
     id: "32",
     title: "wax",
     description: "insert text here7",
+    matches: {wax}
   },
   {
     id: "33",
     title: "mineralOil",
     description: "insert text here8",
+    matches: {mineralOil}
   },
 ];
 
 const AnalysisScreen = () => {
   const results = useSelector((state) => state.results.value);
   const resultsArr = results.split(",");
-  const resultsTrimmed = resultsArr.map(string => string.trim())
+  const resultsTrimmed = resultsArr.map(string => string.trim().toLowerCase())
   const [databaseIngredients, setDatabaseIngredients] = useState(null);
-  const matches = []
 
   useEffect(() => {
     const ingredientDatabase = async () => {
@@ -70,12 +87,34 @@ const AnalysisScreen = () => {
       databaseIngredients.forEach((item) => {
         item.ingredients.forEach((ingredient) => {
             if(resultsTrimmed.includes(ingredient)) {
-                matches.push({type: item.type, ingredient})
+                if(item.type == 'sulfates') {
+                    sulfates.push(ingredient)
+                }
+                else if(item.type == 'silicones') {
+                    silicones.push(ingredient)
+                }
+                else if(item.type == 'shortChainAlcohol') {
+                    shortChainAlcohol.push(ingredient)
+                }
+                else if(item.type == 'parabens') {
+                    parabens.push(ingredient)
+                }
+                else if(item.type == 'formaldehydes') {
+                    formaldehydes.push(ingredient)
+                }
+                else if(item.type == 'soaps') {
+                    soaps.push(ingredient)
+                }
+                else if(item.type == 'wax') {
+                    wax.push(ingredient)
+                }
+                else if(item.type == 'mineralOil') {
+                    mineralOil.push(ingredient)
+                }
             }
         })
       })
   }
-  console.log(matches)
   console.log("done");
   return (
     <FlatList
