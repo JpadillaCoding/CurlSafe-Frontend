@@ -15,33 +15,33 @@ const DATA = [
     description: "insert text here2",
   },
   {
-    id: "27",
-    title: "siliconesWaterSoluble",
-    description: "insert text here3",
-  },
-  {
     id: "28",
     title: "shortChainAlcohol",
-    description: "insert text here4",
+    description: "insert text here3",
   },
   {
     id: "29",
     title: "parabens",
-    description: "insert text here5",
+    description: "insert text here4",
   },
   {
     id: "30",
     title: "formaldehyde",
-    description: "insert text here6",
+    description: "insert text here5",
   },
   {
     id: "31",
     title: "soap",
-    description: "insert text here7",
+    description: "insert text here6",
   },
   {
     id: "32",
     title: "wax",
+    description: "insert text here7",
+  },
+  {
+    id: "33",
+    title: "mineralOil",
     description: "insert text here8",
   },
 ];
