@@ -15,50 +15,50 @@ const mineralOil = []
 const DATA = [
   {
     id: "25",
-    title: "sulfates",
+    title: "Sulfates",
     description: "insert text here1",
     matches: sulfates
     
   },
   {
     id: "26",
-    title: "silicones",
+    title: "Silicones",
     description: "insert text here2",
     matches: silicones
   },
   {
     id: "28",
-    title: "shortChainAlcohol",
+    title: "Short Chain Alcohols",
     description: "insert text here3",
     matches: shortChainAlcohol
   },
   {
     id: "29",
-    title: "parabens",
+    title: "Parabens",
     description: "insert text here4",
     matches: parabens
   },
   {
     id: "30",
-    title: "formaldehydes",
+    title: "Formaldehydes",
     description: "insert text here5",
     matches: formaldehydes
   },
   {
     id: "31",
-    title: "soaps",
+    title: "Soaps",
     description: "insert text here6",
     matches: soaps
   },
   {
     id: "32",
-    title: "wax",
+    title: "Wax",
     description: "insert text here7",
     matches: wax
   },
   {
     id: "33",
-    title: "mineralOil",
+    title: "Mineral Oils",
     description: "insert text here8",
     matches: mineralOil
   },
@@ -124,7 +124,13 @@ const AnalysisScreen = () => {
         return (
           <View style={styles.container}>
             <Text>{item.title}</Text>
-            <Text>{item.matches}</Text>
+            <View style={styles.container}>
+            {item.matches.map(item => {
+                return (
+                <Text>{item}</Text>
+                )
+            })}
+            </View>
           </View>
         );
       }}
