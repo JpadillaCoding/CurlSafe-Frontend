@@ -12,6 +12,7 @@ import {
   faPaperPlane,
   faBolt,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const CameraScreen = () => {
   const [image, setImage] = useState(null);
@@ -20,6 +21,7 @@ const CameraScreen = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const cameraRef = useRef(null);
   const dispatch = useDispatch();
+  const navigation = useNavigation()
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
