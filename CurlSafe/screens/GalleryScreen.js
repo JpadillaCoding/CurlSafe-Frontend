@@ -12,7 +12,6 @@ import {
   faRetweet,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
-import AnalysisScreen from "./AnalysisScreen";
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
