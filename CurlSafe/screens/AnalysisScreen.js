@@ -82,53 +82,35 @@ const AnalysisScreen = () => {
     };
     ingredientDatabase();
   }, []);
-  useEffect(() => {
+  useEffect(() => { //use effect is needed or too many renders error occurs
     if (databaseIngredients) {
-      const sulfates = [];
-      const silicones = [];
-      const shortChainAlcohols = [];
-      const parabens = [];
-      const formaldehydes = [];
-      const soaps = [];
-      const wax = [];
-      const mineralOils = [];
-  
       databaseIngredients.forEach((item) => {
         item.ingredients.forEach((ingredient) => {
           if (resultsTrimmed.includes(ingredient)) {
-            if (item.type == "sulfates") {
-                sulfates.push(ingredient);
-              } else if (item.type == "silicones") {
-                silicones.push(ingredient);
-              } else if (item.type == "shortChainAlcohol") {
-                shortChainAlcohol.push(ingredient);
-              } else if (item.type == "parabens") {
-                parabens.push(ingredient);
-              } else if (item.type == "formaldehydes") {
-                formaldehydes.push(ingredient);
-              } else if (item.type == "soaps") {
-                soaps.push(ingredient);
-              } else if (item.type == "wax") {
-                wax.push(ingredient);
-              } else if (item.type == "mineralOil") {
-                mineralOil.push(ingredient);
-              }
+            if (item.type === "sulfates") {
+              setSulfates((prevSulfates) => [...prevSulfates, ingredient]);
+            } else if (item.type === "silicones") {
+              setSilicones((prevSilicones) => [...prevSilicones, ingredient]);
+            } else if (item.type === "shortChainAlcohol") {
+              setShortChainAlcohol((prevShortChainAlcohol) => [...prevShortChainAlcohol, ingredient]);
+            } else if (item.type === "parabens") {
+              setParabens((prevParabens) => [...prevParabens, ingredient]);
+            } else if (item.type === "formaldehydes") {
+              setFormaldehydes((prevFormaldehydes) => [...prevFormaldehydes, ingredient]);
+            } else if (item.type === "soaps") {
+              setSoaps((prevSoaps) => [...prevSoaps, ingredient]);
+            } else if (item.type === "wax") {
+              setWax((prevWax) => [...prevWax, ingredient]);
+            } else if (item.type === "mineralOil") {
+              setMineralOil((prevMineralOil) => [...prevMineralOil, ingredient]);
+            }
           }
         });
       });
-  
-      setSulfates(sulfates);
-      setSilicones(silicones);
-      setShortChainAlcohol(shortChainAlcohols);
-      setParabens(parabens);
-      setFormaldehydes(formaldehydes);
-      setSoaps(soaps);
-      setWax(wax);
-      setMineralOil(mineralOils);
-      console.log(sulfates,silicones,shortChainAlcohol,parabens,soaps,wax)
     }
-  },[]);
+  }, [databaseIngredients]);
   
+
   console.log("done");
 
   return (
@@ -140,7 +122,7 @@ const AnalysisScreen = () => {
           <View style={styles.container}>
             <Text>{item.title}</Text>
             <View style={styles.container}>
-              {item.matches.length > 0 ? (
+              {item.matches && item.matches.length > 0 ? (
                 item.matches.map((item, index) => {
                   return <Text key={index}>{item}</Text>;
                 })
