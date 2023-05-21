@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { setResults } from "../slices/resultsSlice";
@@ -9,7 +9,6 @@ import { Camera } from "expo-camera";
 import FormData from "form-data";
 import axios from "axios";
 import {
-  faCamera,
   faRepeat,
   faPaperPlane,
   faBolt,
@@ -108,18 +107,18 @@ const CameraScreen = () => {
         >
           <View style={styles.buttonContainer}>
             <Button icon={faRepeat} color={"#fbd029"} onPress={flipCamera} />
-            <View style={styles.cameraContainer}>
-              <Button
-                icon={faCamera}
-                color={"#fbd029"}
-                onPress={takePicture}
-                style={styles.cameraButton}
-              />
-            </View>
+            <TouchableOpacity
+              style={styles.cameraContainer}
+              onPress={takePicture}
+            >
+              <View style={styles.outerCircle}>
+                <View style={styles.innerCircle}></View>
+              </View>
+            </TouchableOpacity>
             <Button
               icon={faBolt}
               color={
-                flash === Camera.Constants.FlashMode.on ? "#fbd029" : "#d7d9d7"
+                flash === Camera.Constants.FlashMode.on ? "#fbd029" : "#E3E3E3"
               }
               onPress={toggleFlash}
             />
@@ -129,14 +128,12 @@ const CameraScreen = () => {
         <View style={styles.previewContainer}>
           <Image source={{ uri: image }} style={styles.camera} />
           {showLoading && <Loader />}
+          <View style={styles.previewButtonContainer}>
+            <Button icon={faRepeat} color={"#fbd029"} onPress={retakePicture} />
+            <Button icon={faPaperPlane} color={"#fbd029"} onPress={analyze} />
+          </View>
         </View>
       )}
-      {image ? (
-        <View style={styles.buttonContainer}>
-          <Button icon={faRepeat} color={"#fbd029"} onPress={retakePicture} />
-          <Button icon={faPaperPlane} color={"#fbd029"} onPress={analyze} />
-        </View>
-      ) : null}
     </View>
   );
 };
@@ -145,37 +142,59 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
-    borderColor: "red",
-    borderWidth: 1,
-  },
-  previewContainer: {
-    flex: 1,
-    backgroundColor: "black",
-    justifyContent: "center",
-    paddingBottom: 20,
-    borderColor: "orange",
-    borderWidth: 1,
   },
   camera: {
     height: "100%",
     width: "100%",
     borderRadius: 20,
-    borderColor: "blue",
-    borderWidth: 1,
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   buttonContainer: {
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "green",
-    borderWidth: 1,
+    justifyContent: "center",
+    marginBottom: 20,
+    marginHorizontal: 40,
+    padding: 20,
+  },
+  previewContainer: {
+    flex: 1,
+    justifyContent: "center",
+    paddingBottom: 0,
+  },
+  previewButtonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginHorizontal: 30,
+    padding: 10,
   },
   cameraContainer: {
     flex: 1,
-    borderColor: "yellow",
-    borderWidth: 1,
     justifyContent: "center",
+    alignItems: "center",
+  },
+  outerCircle: {
+    width: 88,
+    height: 88,
+    borderRadius: 88 / 2,
+    backgroundColor: "#B6B6B6",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  innerCircle: {
+    width: 73,
+    height: 73,
+    borderRadius: 73 / 2,
+    backgroundColor: "#E3E3E3",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cameraButton: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
