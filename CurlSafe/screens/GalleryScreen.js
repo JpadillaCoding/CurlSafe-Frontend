@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Button from "../components/Button";
 import axios from "axios";
@@ -15,8 +15,9 @@ import {
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
+  const [showLoading, setShowLoading] = useState(true);
   const dispatch = useDispatch();
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -29,6 +30,7 @@ const GalleryScreen = () => {
     setImage(result.assets[0].uri);
   };
   const analyze = async () => {
+    setShowLoading(true);
     const formData = new FormData();
     formData.append("image", {
       uri: image,
@@ -48,7 +50,8 @@ const GalleryScreen = () => {
       ) // change to deployed url
       .then((res) => {
         dispatch(setResults(res.data));
-        navigation.navigate('AnalysisScreen');
+        setShowLoading(false);
+        navigation.navigate("AnalysisScreen");
       })
       .catch((error) => {
         console.log(error);
@@ -60,6 +63,14 @@ const GalleryScreen = () => {
       {image ? (
         <View style={styles.container}>
           <View style={styles.container}>
+            <View pointerEvents="none">
+              <ActivityIndicator
+                size="large"
+                color="#f8b71c"
+                animating={showLoading}
+                style={styles.loader}
+              />
+            </View>
             <Image source={{ uri: image }} style={styles.imageStyle} />
           </View>
           <View style={styles.buttonContainer}>
@@ -87,6 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     justifyContent: "center",
     paddingBottom: 20,
+    borderColor: "red",
   },
   imageStyle: {
     width: "100%",
@@ -97,6 +109,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
+  },
+  loader: {
+    position: "absolute",
+    alignSelf: "center",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
   },
 });
 
