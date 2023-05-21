@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Button from "../components/Button";
 import axios from "axios";
@@ -7,6 +7,7 @@ import FormData from "form-data";
 import { useDispatch } from "react-redux";
 import { setResults } from "../slices/resultsSlice";
 import { useNavigation } from "@react-navigation/native";
+import Loader from "../components/Loader";
 import {
   faImage,
   faRetweet,
@@ -62,16 +63,11 @@ const GalleryScreen = () => {
     <View style={styles.container}>
       {image ? (
         <View style={styles.container}>
-          <View style={styles.container}>
-            <View pointerEvents="none">
-              <ActivityIndicator
-                size="large"
-                color="#f8b71c"
-                animating={showLoading}
-                style={styles.loader}
-              />
-            </View>
+          <View style={styles.imageContainer}>
             <Image source={{ uri: image }} style={styles.imageStyle} />
+            {showLoading && (
+              <Loader />
+            )}
           </View>
           <View style={styles.buttonContainer}>
             <Button onPress={pickImage} icon={faRetweet} color={"#fbd029"} />
@@ -99,6 +95,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 20,
     borderColor: "red",
+    borderWidth: 2,
+  },
+  imageContainer: {
+    flex: 1,
+    position: "relative",
+    borderColor: "red",
   },
   imageStyle: {
     width: "100%",
@@ -109,14 +111,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-  },
-  loader: {
-    position: "absolute",
-    alignSelf: "center",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0
+    /* borderWidth: 2, */
+    borderColor: "red",
   },
 });
 
