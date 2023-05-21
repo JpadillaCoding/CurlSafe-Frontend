@@ -13,7 +13,6 @@ import {
   faPaperPlane,
   faBolt,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigation } from "@react-navigation/native";
 
 const CameraScreen = () => {
   const [image, setImage] = useState(null);
