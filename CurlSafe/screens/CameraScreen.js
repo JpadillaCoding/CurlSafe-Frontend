@@ -6,6 +6,7 @@ import axios from "axios";
 import FormData from "form-data";
 import { useDispatch } from "react-redux";
 import { setResults } from "../slices/resultsSlice";
+import Loader from "../components/Loader";
 import {
   faCamera,
   faRepeat,
@@ -19,9 +20,10 @@ const CameraScreen = () => {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
+  const [showLoading, setShowLoading] = useState(false)
   const cameraRef = useRef(null);
   const dispatch = useDispatch();
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
@@ -43,6 +45,7 @@ const CameraScreen = () => {
     setImage(null);
   };
   const analyze = async () => {
+    setShowLoading(true)
     const formData = new FormData();
     formData.append("image", {
       uri: image,
@@ -62,7 +65,8 @@ const CameraScreen = () => {
       ) // change to deployed url
       .then((res) => {
         dispatch(setResults(res.data));
-        navigation.navigate('AnalysisScreen');
+        setShowLoading(false)
+        navigation.navigate("AnalysisScreen");
       })
       .catch((error) => {
         console.log(error);
@@ -110,6 +114,7 @@ const CameraScreen = () => {
       ) : (
         <View style={styles.container}>
           <Image source={{ uri: image }} style={styles.camera} />
+          {showLoading && <Loader />}
         </View>
       )}
       <View>
