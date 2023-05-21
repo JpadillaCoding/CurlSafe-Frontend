@@ -16,7 +16,7 @@ import {
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
-  const [showLoading, setShowLoading] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -60,9 +60,9 @@ const GalleryScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.pageContainer}>
       {image ? (
-        <View style={styles.container}>
+        <View style={styles.previewContainer}>
           <View style={styles.imageContainer}>
             <Image source={{ uri: image }} style={styles.imageStyle} />
             {showLoading && (
@@ -89,18 +89,21 @@ const GalleryScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  previewContainer: {
     flex: 1,
     backgroundColor: "black",
     justifyContent: "center",
     paddingBottom: 20,
-    borderColor: "red",
-    borderWidth: 2,
+  },
+  pageContainer: {
+    flex: 1,
+    backgroundColor: "black",
+    justifyContent: "center",
   },
   imageContainer: {
     flex: 1,
     position: "relative",
-    borderColor: "red",
+    paddingBottom: 10,
   },
   imageStyle: {
     width: "100%",
@@ -111,8 +114,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-    /* borderWidth: 2, */
-    borderColor: "red",
+
   },
 });
 
