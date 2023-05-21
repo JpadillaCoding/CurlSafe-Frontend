@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCamera, faImages } from "@fortawesome/free-solid-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 import {
   FlatList,
   StyleSheet,
@@ -8,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+
 const DATA = [
   {
     id: "12",
@@ -27,13 +28,14 @@ const DATA = [
 ];
 
 const HomeNav = () => {
-  const  naviagtion = useNavigation()
+  const  navigation = useNavigation()
+  
   return (
     <FlatList
       data={DATA}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => naviagtion.navigate(item.screen)}>
+        <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
           <View style={styles.container}>
             <FontAwesomeIcon icon={item.icon} style={styles.icons} size={70} />
             <Text>{item.title}</Text>
