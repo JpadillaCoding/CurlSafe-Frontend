@@ -6,13 +6,14 @@ import axios from "axios";
 import FormData from "form-data";
 import { useDispatch } from "react-redux";
 import { setResults } from "../slices/resultsSlice";
+import { useNavigation } from "@react-navigation/native";
+import Loader from "../components/Loader";
 import {
   faCamera,
   faRepeat,
   faPaperPlane,
   faBolt,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigation } from "@react-navigation/native";
 
 const CameraScreen = () => {
   const [image, setImage] = useState(null);
