@@ -7,6 +7,7 @@ import FormData from "form-data";
 import { useDispatch } from "react-redux";
 import { setResults } from "../slices/resultsSlice";
 import Loader from "../components/Loader";
+import { useNavigation } from "@react-navigation/native";
 import {
   faCamera,
   faRepeat,

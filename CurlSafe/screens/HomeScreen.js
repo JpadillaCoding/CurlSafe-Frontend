@@ -17,9 +17,10 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     padding: 20,
+    fontSize: 32,
   },
   container: {
-    backgroundColor: "white",
+    backgroundColor: "#fbd029",
     flex: 1,
   },  
 });

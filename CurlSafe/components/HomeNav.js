@@ -15,12 +15,14 @@ const DATA = [
     title: "Take A Picture",
     icon: faCamera,
     screen: "CameraScreen",
+    color : "#f8b71c"
   },
   {
     id: "23",
     title: "Choose From Gallery",
     icon: faImages,
     screen: "GalleryScreen",
+    color: "#f8b71c"
   },
 ];
 
@@ -44,12 +46,15 @@ const HomeNav = () => {
 
 const styles = StyleSheet.create({
   icons: {
-    color: "#f7ca28",
+    color: "#fbd029",
   },
   container: {
-    backgroundColor: "grey",
-    margin: 5,
+    backgroundColor: "white",
+    marginTop: 15,
+    marginHorizontal: 25,
+    padding: 10,
     flex: 1,
+    borderRadius: 10,
     alignItems: "center",
   },
 });
