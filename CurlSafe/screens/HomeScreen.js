@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   container: {
-    backgroundColor: "red",
+    backgroundColor: "white",
     flex: 1,
   },  
 });

@@ -7,6 +7,7 @@ import FormData from "form-data";
 import { useDispatch } from "react-redux";
 import { setResults } from "../slices/resultsSlice";
 import { useNavigation } from "@react-navigation/native";
+import Loader from "../components/Loader";
 import {
   faImage,
   faRetweet,
@@ -15,8 +16,9 @@ import {
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
+  const [showLoading, setShowLoading] = useState(false);
   const dispatch = useDispatch();
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -29,6 +31,7 @@ const GalleryScreen = () => {
     setImage(result.assets[0].uri);
   };
   const analyze = async () => {
+    setShowLoading(true);
     const formData = new FormData();
     formData.append("image", {
       uri: image,
@@ -48,7 +51,8 @@ const GalleryScreen = () => {
       ) // change to deployed url
       .then((res) => {
         dispatch(setResults(res.data));
-        navigation.navigate('AnalysisScreen');
+        setShowLoading(false);
+        navigation.navigate("AnalysisScreen");
       })
       .catch((error) => {
         console.log(error);
@@ -56,11 +60,14 @@ const GalleryScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.pageContainer}>
       {image ? (
-        <View style={styles.container}>
-          <View style={styles.container}>
+        <View style={styles.previewContainer}>
+          <View style={styles.imageContainer}>
             <Image source={{ uri: image }} style={styles.imageStyle} />
+            {showLoading && (
+              <Loader />
+            )}
           </View>
           <View style={styles.buttonContainer}>
             <Button onPress={pickImage} icon={faRetweet} color={"#fbd029"} />
@@ -82,11 +89,21 @@ const GalleryScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  previewContainer: {
     flex: 1,
     backgroundColor: "black",
     justifyContent: "center",
     paddingBottom: 20,
+  },
+  pageContainer: {
+    flex: 1,
+    backgroundColor: "black",
+    justifyContent: "center",
+  },
+  imageContainer: {
+    flex: 1,
+    position: "relative",
+    paddingBottom: 10,
   },
   imageStyle: {
     width: "100%",
@@ -97,6 +114,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
+
   },
 });
 

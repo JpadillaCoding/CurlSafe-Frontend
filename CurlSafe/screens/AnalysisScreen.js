@@ -12,53 +12,54 @@ const AnalysisScreen = () => {
   const [soaps, setSoaps] = useState([]);
   const [wax, setWax] = useState([]);
   const [mineralOil, setMineralOil] = useState([]);
-  const DATA = [
+  const DATA = 
+  [
     {
       id: "25",
       title: "Sulfates",
-      description: "insert text here1",
+      description: "Using products containing these sulfates can dry out your curls and lead to excessive dryness and frizziness in your hair.",
       matches: sulfates,
     },
     {
       id: "26",
       title: "Silicones",
-      description: "insert text here2",
+      description: "water-soluble silicones are exempt from this list. These Silicones block moisture from getting into your hair and cause build up since they dont wash out with a co-wash. Can cause curls to straighten and weigh hair down",
       matches: silicones,
     },
     {
       id: "28",
       title: "Short Chain Alcohols",
-      description: "insert text here3",
+      description: "These alcohols tend to make the hair dry and frizzy through stripping moisture.",
       matches: shortChainAlcohol,
     },
     {
       id: "29",
       title: "Parabens",
-      description: "insert text here4",
+      description: "These parabens can can frizzines and dryness. Can also cause irritation to the scalp and some studies found they can hinder hair growth",
       matches: parabens,
     },
     {
       id: "30",
       title: "Formaldehydes",
-      description: "insert text here5",
+      description: "Formaldahydes can change your curl pattern. Can make your hair fragile and less elastic",
       matches: formaldehydes,
     },
     {
       id: "31",
       title: "Soaps",
-      description: "insert text here6",
+      description: "These Soaps can cause drying",
       matches: soaps,
     },
     {
       id: "32",
       title: "Waxes",
-      description: "insert text here7",
+      description: "Waxes do not wash out with a co-wash, which causes build up and weights your hair down",
       matches: wax,
     },
     {
       id: "33",
       title: "Mineral Oils",
-      description: "insert text here8",
+      description: "Mineral Oils weigh down your hair and are hard to remove without using sulphates",
       matches: mineralOil,
     },
   ];
@@ -82,53 +83,35 @@ const AnalysisScreen = () => {
     };
     ingredientDatabase();
   }, []);
-  useEffect(() => {
+  useEffect(() => { //use effect is needed or too many renders error occurs
     if (databaseIngredients) {
-      const sulfates = [];
-      const silicones = [];
-      const shortChainAlcohols = [];
-      const parabens = [];
-      const formaldehydes = [];
-      const soaps = [];
-      const wax = [];
-      const mineralOils = [];
-  
       databaseIngredients.forEach((item) => {
         item.ingredients.forEach((ingredient) => {
           if (resultsTrimmed.includes(ingredient)) {
-            if (item.type == "sulfates") {
-                sulfates.push(ingredient);
-              } else if (item.type == "silicones") {
-                silicones.push(ingredient);
-              } else if (item.type == "shortChainAlcohol") {
-                shortChainAlcohol.push(ingredient);
-              } else if (item.type == "parabens") {
-                parabens.push(ingredient);
-              } else if (item.type == "formaldehydes") {
-                formaldehydes.push(ingredient);
-              } else if (item.type == "soaps") {
-                soaps.push(ingredient);
-              } else if (item.type == "wax") {
-                wax.push(ingredient);
-              } else if (item.type == "mineralOil") {
-                mineralOil.push(ingredient);
-              }
+            if (item.type === "sulfates") {
+              setSulfates((prevSulfates) => [...prevSulfates, ingredient]);
+            } else if (item.type === "silicones") {
+              setSilicones((prevSilicones) => [...prevSilicones, ingredient]);
+            } else if (item.type === "short-chain-alcohol") {
+              setShortChainAlcohol((prevShortChainAlcohol) => [...prevShortChainAlcohol, ingredient]);
+            } else if (item.type === "parabens") {
+              setParabens((prevParabens) => [...prevParabens, ingredient]);
+            } else if (item.type === "formaldehydes") {
+              setFormaldehydes((prevFormaldehydes) => [...prevFormaldehydes, ingredient]);
+            } else if (item.type === "soaps") {
+              setSoaps((prevSoaps) => [...prevSoaps, ingredient]);
+            } else if (item.type === "wax") {
+              setWax((prevWax) => [...prevWax, ingredient]);
+            } else if (item.type === "mineral-oil") {
+              setMineralOil((prevMineralOil) => [...prevMineralOil, ingredient]);
+            }
           }
         });
       });
-  
-      setSulfates(sulfates);
-      setSilicones(silicones);
-      setShortChainAlcohol(shortChainAlcohols);
-      setParabens(parabens);
-      setFormaldehydes(formaldehydes);
-      setSoaps(soaps);
-      setWax(wax);
-      setMineralOil(mineralOils);
-      console.log(sulfates,silicones,shortChainAlcohol,parabens,soaps,wax)
     }
-  },[]);
-  
+  }, [databaseIngredients]);
+  //mineral oil and short chain not working
+
   console.log("done");
 
   return (
@@ -140,7 +123,7 @@ const AnalysisScreen = () => {
           <View style={styles.container}>
             <Text>{item.title}</Text>
             <View style={styles.container}>
-              {item.matches.length > 0 ? (
+              {item.matches && item.matches.length > 0 ? (
                 item.matches.map((item, index) => {
                   return <Text key={index}>{item}</Text>;
                 })
