@@ -163,13 +163,15 @@ const styles = StyleSheet.create({
   container: {
     margin: 5,
     flex: 1,
-    alignItems: "center",
     borderRadius: 10,
     backgroundColor: "#fbd029",
     overflow: "hidden",
+    borderColor: "black",
+    borderWidth: 1,
   },
   analysisScreen: {
     backgroundColor: "white",
+    flex: 1,
   },
   headerContainer: {
     backgroundColor: "#f8b71c",
@@ -178,7 +180,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingHorizontal: 20,
-    textAlign: "center",
   },
   title: {
     textAlign: "center",
