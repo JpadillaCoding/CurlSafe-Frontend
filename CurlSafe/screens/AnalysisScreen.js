@@ -71,9 +71,17 @@ const AnalysisScreen = () => {
   ];
   const results = useSelector((state) => state.results.value);
   const resultsArr = results.split(",");
+
+  function trimWhitespaceQuotes(string) {
+    const pattern = /^(?:\s|['"])*(.*?)(?:\s|['"])*$/;
+    const trimmedString = string.replace(pattern, '$1').toLowerCase().replace(/\s+/g, ' ').replace(/\s-/g,'').trim();
+    console.log("item: " + trimmedString + "\n")
+    return trimmedString;
+  }
   const resultsTrimmed = resultsArr.map((string) =>
-    string.trim().toLowerCase()
+    trimWhitespaceQuotes(string)
   );
+
   const [databaseIngredients, setDatabaseIngredients] = useState(null);
 
   useEffect(() => {
@@ -126,7 +134,6 @@ const AnalysisScreen = () => {
       });
     }
   }, [databaseIngredients]);
-  //mineral oil and short chain not working
 
   console.log("done");
 
@@ -164,13 +171,13 @@ const styles = StyleSheet.create({
     margin: 5,
     flex: 1,
     borderRadius: 10,
-    backgroundColor: "#fbd029",
+    backgroundColor: "white",
     overflow: "hidden",
     borderColor: "black",
     borderWidth: 1,
   },
   analysisScreen: {
-    backgroundColor: "white",
+    backgroundColor: "#fbd029",
     flex: 1,
   },
   headerContainer: {
