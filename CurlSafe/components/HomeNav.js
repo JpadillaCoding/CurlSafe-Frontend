@@ -38,7 +38,7 @@ const HomeNav = () => {
         <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
           <View style={styles.container}>
             <FontAwesomeIcon icon={item.icon} style={styles.icons} size={70} />
-            <Text>{item.title}</Text>
+            <Text style={styles.titleText}>{item.title}</Text>
           </View>
         </TouchableOpacity>
       )}
@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
   icons: {
     color: "#fbd029",
   },
+  titleText: {
+    fontFamily: "RobotoCondensed_700Bold_Italic",
+  },
   container: {
     backgroundColor: "white",
     marginTop: 15,
@@ -58,6 +61,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 10,
     alignItems: "center",
+    borderColor: "black",
+    borderWidth: 2,
   },
 });
 
