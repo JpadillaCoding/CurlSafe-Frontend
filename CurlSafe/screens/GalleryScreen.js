@@ -62,7 +62,7 @@ const GalleryScreen = () => {
   };
 
   return (
-    <View style={styles.pageContainer}>
+    <>
       {image ? (
         <View style={styles.previewContainer}>
           <View style={styles.imageContainer}>
@@ -76,16 +76,14 @@ const GalleryScreen = () => {
         </View>
       ) : (
         <View style={styles.chooseImageContainer}>
-          <View style={styles.titleContainer}>
-            <Text>Curl Safe</Text>
-          </View>
-          <TouchableOpacity style={styles.chooseImage} onPress={pickImage}>
+          <Text style={styles.chooseImageTitle}>Curl Safe</Text>
+          <TouchableOpacity style={styles.chooseImagebutton} onPress={pickImage}>
             <FontAwesomeIcon icon={faImage} color={"#fbd029"} size={70} />
             <Text style={styles.buttonText}>Choose Image</Text>
           </TouchableOpacity>
         </View>
       )}
-    </View>
+    </>
   );
 };
 
@@ -98,11 +96,7 @@ const styles = StyleSheet.create({
   },
   chooseImageContainer: {
     flex: 1,
-  },
-  pageContainer: {
-    flex: 1,
     backgroundColor: "#fbd029",
-    justifyContent: "center",
   },
   imageContainer: {
     flex: 1,
@@ -114,15 +108,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 20,
   },
-  titleContainer: {
-    height: 100,
-  },
   imageStyle: {
     width: "100%",
     height: "100%",
     borderRadius: 20,
   },
-  chooseImage: {
+  chooseImagebutton: {
     marginTop: 15,
     marginHorizontal: 25,
     padding: 10,
@@ -135,9 +126,11 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: "RobotoCondensed_700Bold_Italic",
   },
-  title: {
-    borderColor: "red",
-    borderWidth: 1,
+  chooseImageTitle: {
+    padding: 20,
+    textAlign: 'center',
+    fontSize: 30,
+    fontFamily: "RobotoCondensed_700Bold_Italic",
   },
 });
 

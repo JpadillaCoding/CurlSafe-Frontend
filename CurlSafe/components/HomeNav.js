@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 10,
     alignItems: "center",
+    borderColor: "black",
+    borderWidth: 2,
   },
 });
 
