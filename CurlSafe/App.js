@@ -9,16 +9,20 @@ import HomeScreen from "./screens/HomeScreen";
 import CameraScreen from "./screens/CameraScreen";
 import GalleryScreen from "./screens/GalleryScreen";
 import AnalysisScreen from "./screens/AnalysisScreen";
-import { useFonts, MarckScript_400Regular } from "@expo-google-fonts/marck-script";
-import { AppLoading } from "expo";
+import { useFonts, RobotoCondensed_700Bold_Italic, RobotoCondensed_400Regular,RobotoCondensed_700Bold } from "@expo-google-fonts/roboto-condensed";
+import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   let [fontsLoaded] = useFonts({
-    MarckScript_400Regular,
+    RobotoCondensed_700Bold_Italic,
+    RobotoCondensed_700Bold,
+    RobotoCondensed_400Regular,
+    Roboto_400Regular,
+    Roboto_700Bold
   })
   if(!fontsLoaded) {
-    return <AppLoading />
+    return null
   }
 
   return (

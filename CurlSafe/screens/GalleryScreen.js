@@ -67,9 +67,7 @@ const GalleryScreen = () => {
         <View style={styles.previewContainer}>
           <View style={styles.imageContainer}>
             <Image source={{ uri: image }} style={styles.imageStyle} />
-            {showLoading && (
-              <Loader />
-            )}
+            {showLoading && <Loader />}
           </View>
           <View style={styles.buttonContainer}>
             <Button onPress={pickImage} icon={faRetweet} color={"#fbd029"} />
@@ -77,14 +75,15 @@ const GalleryScreen = () => {
           </View>
         </View>
       ) : (
-        <TouchableOpacity style={styles.chooseImage} onPress={pickImage}>
-          <FontAwesomeIcon
-            icon={faImage}
-            color={"#fbd029"}
-            size={70}
-          />
-          <Text>Choose Image</Text>
-        </TouchableOpacity>
+        <View style={styles.chooseImageContainer}>
+          <View style={styles.titleContainer}>
+            <Text>Curl Safe</Text>
+          </View>
+          <TouchableOpacity style={styles.chooseImage} onPress={pickImage}>
+            <FontAwesomeIcon icon={faImage} color={"#fbd029"} size={70} />
+            <Text style={styles.buttonText}>Choose Image</Text>
+          </TouchableOpacity>
+        </View>
       )}
     </View>
   );
@@ -97,6 +96,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom: 20,
   },
+  chooseImageContainer: {
+    flex: 1,
+  },
   pageContainer: {
     flex: 1,
     backgroundColor: "#fbd029",
@@ -107,23 +109,35 @@ const styles = StyleSheet.create({
     position: "relative",
     paddingBottom: 10,
   },
-  imageStyle: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 20,
-  },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
   },
+  titleContainer: {
+    height: 100,
+  },
+  imageStyle: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 20,
+  },
   chooseImage: {
-    backgroundColor: "white",
     marginTop: 15,
     marginHorizontal: 25,
     padding: 10,
     borderRadius: 10,
     alignItems: "center",
+    backgroundColor: "white",
+    borderWidth: 2,
+    borderColor: "black",
+  },
+  buttonText: {
+    fontFamily: "RobotoCondensed_700Bold_Italic",
+  },
+  title: {
+    borderColor: "red",
+    borderWidth: 1,
   },
 });
 

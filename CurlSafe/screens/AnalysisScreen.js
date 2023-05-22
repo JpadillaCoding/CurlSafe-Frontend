@@ -120,19 +120,13 @@ const AnalysisScreen = () => {
             } else if (item.type === "parabens") {
               setParabens((prevParabens) => [...prevParabens, ingredient]);
             } else if (item.type === "formaldehydes") {
-              setFormaldehydes((prevFormaldehydes) => [
-                ...prevFormaldehydes,
-                ingredient,
-              ]);
+              setFormaldehydes((prevFormaldehydes) => [...prevFormaldehydes,ingredient]);
             } else if (item.type === "soaps") {
               setSoaps((prevSoaps) => [...prevSoaps, ingredient]);
             } else if (item.type === "wax") {
               setWax((prevWax) => [...prevWax, ingredient]);
             } else if (item.type === "mineral-oil") {
-              setMineralOil((prevMineralOil) => [
-                ...prevMineralOil,
-                ingredient,
-              ]);
+              setMineralOil((prevMineralOil) => [...prevMineralOil, ingredient]);
             }
           }
         });
@@ -144,7 +138,7 @@ const AnalysisScreen = () => {
 
   return (
     <View style={styles.analysisScreen}>
-      <Text>Curl Safe</Text>
+      <Text style={styles.title}>Curl Safe</Text>
       <FlatList
         data={DATA}
         keyExtractor={(item) => item.id}
@@ -152,16 +146,16 @@ const AnalysisScreen = () => {
           return (
             <View style={styles.container}>
               <View style={styles.headerContainer}>
-                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.headerTitle}>{item.title}</Text>
                 <Text style={styles.description}>{item.description}</Text>
               </View>
               <View style={styles.matchesContainer}>
                 {item.matches && item.matches.length > 0 ? (
                   item.matches.map((item, index) => {
-                    return <Text key={index}>{`\u2022 ${item}`}</Text>;
+                    return <Text style={styles.matchesText} key={index}>{`\u2022 ${item}`}</Text>;
                   })
                 ) : (
-                  <Text>No {item.title} Found!</Text>
+                  <Text style={styles.matchesText}>No {item.title} Found!</Text>
                 )}
               </View>
             </View>
@@ -181,6 +175,11 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
   },
+  title: {
+    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontSize: 30,
+    textAlign: "center",
+  },
   analysisScreen: {
     backgroundColor: "#fbd029",
     flex: 1,
@@ -195,19 +194,24 @@ const styles = StyleSheet.create({
     borderBottomColor: "black",
     borderBottomWidth: 2,
   },
-  title: {
-    textAlign: "center",
+  headerTitle: {
+    fontFamily: "RobotoCondensed_700Bold",
     fontSize: 18,
+    textAlign: "center",
     marginBottom: 10,
     textDecorationLine: "underline",
   },
   description: {
-    fontSize: 12,
+    fontFamily: "RobotoCondensed_400Regular",
+    fontSize: 13,
   },
   matchesContainer: {
     paddingTop: 10,
     paddingBottom: 10,
     paddingHorizontal: 20,
+  },
+  matchesText: {
+    fontFamily: "RobotoCondensed_400Regular",
   },
 });
 
