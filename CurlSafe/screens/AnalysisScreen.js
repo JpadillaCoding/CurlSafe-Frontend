@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     overflow: "hidden",
     borderColor: "black",
-    borderWidth: 1,
+    borderWidth: 2,
   },
   title: {
     fontFamily: "RobotoCondensed_700Bold_Italic",
@@ -199,7 +199,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     marginBottom: 10,
-    textDecorationLine: "underline",
   },
   description: {
     fontFamily: "RobotoCondensed_400Regular",
