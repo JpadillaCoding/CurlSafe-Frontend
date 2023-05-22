@@ -1,7 +1,6 @@
 import React from "react";
 import HomeNav from "../components/HomeNav";
 import { View, Text, StyleSheet } from "react-native";
-import { MarckScript_400Regular } from '@expo-google-fonts/marck-script';
 
 
 const HomeScreen = () => {
