@@ -9,9 +9,17 @@ import HomeScreen from "./screens/HomeScreen";
 import CameraScreen from "./screens/CameraScreen";
 import GalleryScreen from "./screens/GalleryScreen";
 import AnalysisScreen from "./screens/AnalysisScreen";
+import { useFonts, MarckScript_400Regular } from "@expo-google-fonts/marck-script";
+import { AppLoading } from "expo";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+  let [fontsLoaded] = useFonts({
+    MarckScript_400Regular,
+  })
+  if(!fontsLoaded) {
+    return <AppLoading />
+  }
 
   return (
     <Provider store={store}>

@@ -74,8 +74,13 @@ const AnalysisScreen = () => {
 
   function trimWhitespaceQuotes(string) {
     const pattern = /^(?:\s|['"])*(.*?)(?:\s|['"])*$/;
-    const trimmedString = string.replace(pattern, '$1').toLowerCase().replace(/\s+/g, ' ').replace(/\s-/g,'').trim();
-    console.log("item: " + trimmedString + "\n")
+    const trimmedString = string
+      .replace(pattern, "$1")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .replace(/\s-/g, "")
+      .trim();
+    console.log("item: " + trimmedString + "\n");
     return trimmedString;
   }
   const resultsTrimmed = resultsArr.map((string) =>
@@ -187,6 +192,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingHorizontal: 20,
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
   },
   title: {
     textAlign: "center",
