@@ -1,14 +1,14 @@
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Camera } from "expo-camera";
-import Button from "../components/Button";
-import axios from "axios";
-import FormData from "form-data";
-import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 import { setResults } from "../slices/resultsSlice";
+import Button from "../components/Button";
+import { useDispatch } from "react-redux";
 import Loader from "../components/Loader";
+import { Camera } from "expo-camera";
+import FormData from "form-data";
+import axios from "axios";
 import {
-  faCamera,
   faRepeat,
   faPaperPlane,
   faBolt,
@@ -19,10 +19,12 @@ const CameraScreen = () => {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
-  const [showLoading, setShowLoading] = useState(false)
+  const [showLoading, setShowLoading] = useState(false);
+
   const cameraRef = useRef(null);
-  const dispatch = useDispatch();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
@@ -40,18 +42,20 @@ const CameraScreen = () => {
       }
     }
   };
+
   const retakePicture = () => {
     setImage(null);
   };
+
   const analyze = async () => {
-    setShowLoading(true)
+    setShowLoading(true);
     const formData = new FormData();
     formData.append("image", {
       uri: image,
       type: "image/jpeg",
       name: "image.jpg",
     });
-    console.log("working on it..");
+
     await axios
       .post(
         "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/vision/analyzeImage",
@@ -64,13 +68,14 @@ const CameraScreen = () => {
       ) // change to deployed url
       .then((res) => {
         dispatch(setResults(res.data));
-        setShowLoading(false)
+        setShowLoading(false);
         navigation.navigate("AnalysisScreen");
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   const flipCamera = () => {
     if (type === 0) {
       setType(1);
@@ -78,6 +83,7 @@ const CameraScreen = () => {
       setType(0);
     }
   };
+
   const toggleFlash = () => {
     if (flash === Camera.Constants.FlashMode.off) {
       setFlash(Camera.Constants.FlashMode.on);
@@ -101,49 +107,33 @@ const CameraScreen = () => {
         >
           <View style={styles.buttonContainer}>
             <Button icon={faRepeat} color={"#fbd029"} onPress={flipCamera} />
+            <TouchableOpacity
+              style={styles.cameraContainer}
+              onPress={takePicture}
+            >
+              <View style={styles.outerCircle}>
+                <View style={styles.innerCircle}></View>
+              </View>
+            </TouchableOpacity>
             <Button
               icon={faBolt}
               color={
-                flash === Camera.Constants.FlashMode.on ? "#fbd029" : "white"
+                flash === Camera.Constants.FlashMode.on ? "#fbd029" : "#E3E3E3"
               }
               onPress={toggleFlash}
             />
           </View>
         </Camera>
       ) : (
-        <View style={styles.container}>
+        <View style={styles.previewContainer}>
           <Image source={{ uri: image }} style={styles.camera} />
           {showLoading && <Loader />}
+          <View style={styles.previewButtonContainer}>
+            <Button icon={faRepeat} color={"#fbd029"} onPress={retakePicture} />
+            <Button icon={faPaperPlane} color={"#fbd029"} onPress={analyze} />
+          </View>
         </View>
       )}
-      <View>
-        {image ? (
-          <View style={styles.buttonContainer}>
-            <Button
-              title={"Re-take"}
-              icon={faRepeat}
-              color={"#fbd029"}
-              onPress={retakePicture}
-            />
-            <Button
-              title={"Analyze"}
-              icon={faPaperPlane}
-              color={"#fbd029"}
-              onPress={analyze}
-            />
-          </View>
-        ) : (
-          <View style={styles.cameraContainer}>
-            <Button
-              title={"take a picture"}
-              icon={faCamera}
-              color={"#fbd029"}
-              onPress={takePicture}
-              style={styles.cameraButton}
-            />
-          </View>
-        )}
-      </View>
     </View>
   );
 };
@@ -152,22 +142,59 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
-    justifyContent: "center",
-    paddingBottom: 20,
   },
   camera: {
-    height: "90%",
+    height: "100%",
     width: "100%",
     borderRadius: 20,
+    flex: 1,
+    justifyContent: "flex-end",
   },
   buttonContainer: {
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+    marginHorizontal: 40,
+    padding: 20,
+  },
+  previewContainer: {
+    flex: 1,
+    justifyContent: "center",
+    paddingBottom: 0,
+  },
+  previewButtonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 20,
+    marginHorizontal: 30,
+    padding: 10,
   },
   cameraContainer: {
     flex: 1,
-    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  outerCircle: {
+    width: 88,
+    height: 88,
+    borderRadius: 88 / 2,
+    backgroundColor: "#B6B6B6",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  innerCircle: {
+    width: 73,
+    height: 73,
+    borderRadius: 73 / 2,
+    backgroundColor: "#E3E3E3",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cameraButton: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

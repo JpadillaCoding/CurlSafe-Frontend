@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { setResults } from "../slices/resultsSlice";
 import * as ImagePicker from "expo-image-picker";
 import Button from "../components/Button";
-import axios from "axios";
-import FormData from "form-data";
 import { useDispatch } from "react-redux";
-import { setResults } from "../slices/resultsSlice";
-import { useNavigation } from "@react-navigation/native";
 import Loader from "../components/Loader";
+import FormData from "form-data";
+import axios from "axios";
 import {
   faImage,
   faRetweet,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
@@ -30,6 +31,7 @@ const GalleryScreen = () => {
 
     setImage(result.assets[0].uri);
   };
+
   const analyze = async () => {
     setShowLoading(true);
     const formData = new FormData();
@@ -75,14 +77,14 @@ const GalleryScreen = () => {
           </View>
         </View>
       ) : (
-        <View>
-          <Button
-            title="Pick an image from camera roll"
-            onPress={pickImage}
+        <TouchableOpacity style={styles.chooseImage} onPress={pickImage}>
+          <FontAwesomeIcon
             icon={faImage}
             color={"#fbd029"}
+            size={70}
           />
-        </View>
+          <Text>Choose Image</Text>
+        </TouchableOpacity>
       )}
     </View>
   );
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
   },
   pageContainer: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "#fbd029",
     justifyContent: "center",
   },
   imageContainer: {
@@ -114,7 +116,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-
+  },
+  chooseImage: {
+    backgroundColor: "white",
+    marginTop: 15,
+    marginHorizontal: 25,
+    padding: 10,
+    borderRadius: 10,
+    alignItems: "center",
   },
 });
 
