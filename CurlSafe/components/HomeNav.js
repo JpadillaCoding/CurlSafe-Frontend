@@ -16,21 +16,21 @@ const DATA = [
     title: "Take A Picture",
     icon: faCamera,
     screen: "CameraScreen",
-    color : "#455e44"
+    color : "#8ea48e"
   },
   {
     id: "23",
     title: "Choose From Gallery",
     icon: faImages,
     screen: "GalleryScreen",
-    color: "#455e44"
+    color: "#8ea48e"
   },
   {
     id:"34",
     title: "Ingredients",
     icon: faList,
     screen: "IngredientsScreen",
-    color: "#455e44" 
+    color: "#8ea48e" 
   },
 ];
 

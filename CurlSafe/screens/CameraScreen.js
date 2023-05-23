@@ -73,6 +73,8 @@ const CameraScreen = () => {
       })
       .catch((error) => {
         console.log(error);
+        alert("Analysis failed")
+        navigation.navigate("HomeScreen")
       });
   };
 
@@ -106,7 +108,7 @@ const CameraScreen = () => {
           style={styles.camera}
         >
           <View style={styles.buttonContainer}>
-            <Button icon={faRepeat} color={"#fbd029"} onPress={flipCamera} />
+            <Button icon={faRepeat} color={"#8ea48e"} onPress={flipCamera} />
             <TouchableOpacity
               style={styles.cameraContainer}
               onPress={takePicture}
@@ -118,7 +120,7 @@ const CameraScreen = () => {
             <Button
               icon={faBolt}
               color={
-                flash === Camera.Constants.FlashMode.on ? "#fbd029" : "#E3E3E3"
+                flash === Camera.Constants.FlashMode.on ? "#8ea48e" : "#E3E3E3"
               }
               onPress={toggleFlash}
             />
@@ -129,8 +131,8 @@ const CameraScreen = () => {
           <Image source={{ uri: image }} style={styles.camera} />
           {showLoading && <Loader />}
           <View style={styles.previewButtonContainer}>
-            <Button icon={faRepeat} color={"#fbd029"} onPress={retakePicture} />
-            <Button icon={faPaperPlane} color={"#fbd029"} onPress={analyze} />
+            <Button icon={faRepeat} color={"#8ea48e"} onPress={retakePicture} />
+            <Button icon={faPaperPlane} color={"#8ea48e"} onPress={analyze} />
           </View>
         </View>
       )}

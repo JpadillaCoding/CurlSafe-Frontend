@@ -18,7 +18,6 @@ const IngredientsScreen = () => {
     };
     ingredientDatabase();
   }, []);
-  /* console.log(databaseIngredients); */
   return (
     <View style={styles.pageContainer}>
       <Text style={styles.title}>Curl Safe</Text>
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
   },
   pageContainer: {
     flex: 1,
-    backgroundColor: "#fbd029",
+    backgroundColor: "#455e44",
   },
   typeContainer: {
     margin: 5,
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   headerContainer: {
-    backgroundColor: "#f8b71c",
+    backgroundColor: "#8ea48e",
     flex: 1,
     width: "100%",
     paddingTop: 10,
