@@ -21,17 +21,25 @@ const IngredientsScreen = () => {
   /* console.log(databaseIngredients); */
   return (
     <View style={styles.pageContainer}>
-        <Text>Curl Safe</Text>
-      {databaseIngredients &&
-      <FlatList 
-      data={databaseIngredients}
-      renderItem={({item}) => {
-        return (
-            
+      <Text>Curl Safe</Text>
+      {
+        databaseIngredients && (
+          <FlatList
+            data={databaseIngredients}
+            renderItem={({ item }) => {
+              return (
+                <View style={styles.typeContainer}>
+                  <View style={styles.headerContainer}>
+                    <Text key={item.type} style={styles.headerTitle}>
+                      {item.type}
+                    </Text>
+                  </View>
+                </View>
+              );
+            }}
+          />
         )
-      }}
-      />
-/*         databaseIngredients.map((item, index) => {
+        /*         databaseIngredients.map((item, index) => {
           return (
             <View style={styles.typeContainer}>
               <View style={styles.headerContainer}>
@@ -45,7 +53,7 @@ const IngredientsScreen = () => {
             </View>
           );
         }) */
-        }
+      }
     </View>
   );
 };
