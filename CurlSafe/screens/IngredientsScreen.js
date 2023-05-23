@@ -18,7 +18,6 @@ const IngredientsScreen = () => {
     };
     ingredientDatabase();
   }, []);
-  /* console.log(databaseIngredients); */
   return (
     <View style={styles.pageContainer}>
       <Text style={styles.title}>Curl Safe</Text>
@@ -48,20 +47,6 @@ const IngredientsScreen = () => {
             }}
           />
         )
-        /*         databaseIngredients.map((item, index) => {
-          return (
-            <View style={styles.typeContainer}>
-              <View style={styles.headerContainer}>
-                <Text key={index} style={styles.headerTitle}>{item.type}</Text>
-              </View>
-              <View style={styles.ingredientsContainer}>
-                {item.ingredients.map((ingredient, index) => {
-                    return <Text style={styles.ingredientsText} key={index}>{`\u2022 ${ingredient}`}</Text>;
-                })}
-              </View>
-            </View>
-          );
-        }) */
       }
     </View>
   );
