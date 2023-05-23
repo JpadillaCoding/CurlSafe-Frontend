@@ -9,7 +9,7 @@ const IngredientsScreen = () => {
     const ingredientDatabase = async () => {
       try {
         const response = await axios.get(
-          "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/ingredients"
+          "https://curl-safe.herokuapp.com/ingredients"
         );
         setDatabaseIngredients(response.data);
       } catch (error) {
@@ -18,7 +18,6 @@ const IngredientsScreen = () => {
     };
     ingredientDatabase();
   }, []);
-  /* console.log(databaseIngredients); */
   return (
     <View style={styles.pageContainer}>
       <Text style={styles.title}>Curl Safe</Text>
@@ -48,20 +47,6 @@ const IngredientsScreen = () => {
             }}
           />
         )
-        /*         databaseIngredients.map((item, index) => {
-          return (
-            <View style={styles.typeContainer}>
-              <View style={styles.headerContainer}>
-                <Text key={index} style={styles.headerTitle}>{item.type}</Text>
-              </View>
-              <View style={styles.ingredientsContainer}>
-                {item.ingredients.map((ingredient, index) => {
-                    return <Text style={styles.ingredientsText} key={index}>{`\u2022 ${ingredient}`}</Text>;
-                })}
-              </View>
-            </View>
-          );
-        }) */
       }
     </View>
   );
@@ -74,7 +59,7 @@ const styles = StyleSheet.create({
   },
   pageContainer: {
     flex: 1,
-    backgroundColor: "#fbd029",
+    backgroundColor: "#455e44",
   },
   typeContainer: {
     margin: 5,
@@ -86,7 +71,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   headerContainer: {
-    backgroundColor: "#f8b71c",
+    backgroundColor: "#8ea48e",
     flex: 1,
     width: "100%",
     paddingTop: 10,

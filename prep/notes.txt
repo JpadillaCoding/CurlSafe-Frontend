@@ -1,6 +1,10 @@
 colors: 
-dark #f8b71c
-light #fbd029
+yellow-
+    dark #f8b71c
+    light #fbd029
+green- 
+    dark #455e44
+    light #8ea48e
 todo: 
     trim analyzed items and seeded data to not have -
     ex: sodium-laureth

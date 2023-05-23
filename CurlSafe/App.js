@@ -11,6 +11,7 @@ import GalleryScreen from "./screens/GalleryScreen";
 import AnalysisScreen from "./screens/AnalysisScreen";
 import { useFonts, RobotoCondensed_700Bold_Italic, RobotoCondensed_400Regular,RobotoCondensed_700Bold } from "@expo-google-fonts/roboto-condensed";
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
+import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold_Italic } from '@expo-google-fonts/playfair-display';
 import IngredientsScreen from "./screens/IngredientsScreen";
 
 export default function App() {
@@ -20,7 +21,10 @@ export default function App() {
     RobotoCondensed_700Bold,
     RobotoCondensed_400Regular,
     Roboto_400Regular,
-    Roboto_700Bold
+    Roboto_700Bold,
+    PlayfairDisplay_400Regular,
+    PlayfairDisplay_700Bold_Italic,
+
   })
   if(!fontsLoaded) {
     return null
