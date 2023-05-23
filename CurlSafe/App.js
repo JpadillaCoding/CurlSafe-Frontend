@@ -12,6 +12,7 @@ import AnalysisScreen from "./screens/AnalysisScreen";
 import { useFonts, RobotoCondensed_700Bold_Italic, RobotoCondensed_400Regular,RobotoCondensed_700Bold } from "@expo-google-fonts/roboto-condensed";
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import IngredientsScreen from "./screens/IngredientsScreen";
+import SearchScreen from "./screens/searchScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -63,6 +64,13 @@ export default function App() {
             <Stack.Screen 
               name="IngredientsScreen"
               component={IngredientsScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen 
+              name="SearchScreen"
+              component={SearchScreen}
               options={{
                 headerShown: false,
               }}
