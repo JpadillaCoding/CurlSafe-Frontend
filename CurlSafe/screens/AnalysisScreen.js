@@ -25,7 +25,7 @@ const AnalysisScreen = () => {
       id: "26",
       title: "Silicones",
       description:
-        "water-soluble silicones are exempt from this list. These Silicones block moisture from getting into your hair and cause build up since they dont wash out with a co-wash. Can cause curls to straighten and weigh hair down",
+      "Water-soluble silicones are exempt from this list. These Silicones block moisture from getting into your hair and cause build-up since they don't wash out with a co-wash. Can cause curls to straighten and weigh hair down",
       matches: silicones,
     },
     {
@@ -39,14 +39,14 @@ const AnalysisScreen = () => {
       id: "29",
       title: "Parabens",
       description:
-        "These parabens can can frizzines and dryness. Can also cause irritation to the scalp and some studies found they can hinder hair growth",
+      "These parabens can frizziness and dryness. Can also irritate the scalp and some studies found they can hinder hair growth",
       matches: parabens,
     },
     {
       id: "30",
       title: "Formaldehydes",
       description:
-        "Formaldahydes can change your curl pattern. Can make your hair fragile and less elastic",
+      "Formaldehydes can change your curl pattern. Can make your hair fragile and less elastic",
       matches: formaldehydes,
     },
     {
@@ -59,7 +59,7 @@ const AnalysisScreen = () => {
       id: "32",
       title: "Waxes",
       description:
-        "Waxes do not wash out with a co-wash, which causes build up and weights your hair down",
+      "Waxes do not wash out with a co-wash, which causes build-up and weights your hair down",
       matches: wax,
     },
     {
@@ -93,7 +93,7 @@ const AnalysisScreen = () => {
     const ingredientDatabase = async () => {
       try {
         const response = await axios.get(
-          "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/ingredients"
+          "https://curl-safe.herokuapp.com/ingredients"
         );
         setDatabaseIngredients(response.data);
       } catch (error) {
@@ -176,16 +176,16 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   title: {
-    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontFamily: "PlayfairDisplay_700Bold_Italic",
     fontSize: 30,
     textAlign: "center",
   },
   analysisScreen: {
-    backgroundColor: "#fbd029",
+    backgroundColor: "#455e44",
     flex: 1,
   },
   headerContainer: {
-    backgroundColor: "#f8b71c",
+    backgroundColor: "#8ea48e",
     flex: 1,
     width: "100%",
     paddingTop: 10,
@@ -195,13 +195,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   headerTitle: {
-    fontFamily: "RobotoCondensed_700Bold",
+    fontFamily: "PlayfairDisplay_700Bold_Italic",
     fontSize: 18,
     textAlign: "center",
     marginBottom: 10,
   },
   description: {
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "PlayfairDisplay_400Regular",
     fontSize: 13,
   },
   matchesContainer: {
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   matchesText: {
-    fontFamily: "RobotoCondensed_400Regular",
+    fontFamily: "PlayfairDisplay_400Regular",
   },
 });
 

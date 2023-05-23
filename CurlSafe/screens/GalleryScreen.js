@@ -43,7 +43,7 @@ const GalleryScreen = () => {
     console.log("working on it..");
     await axios
       .post(
-        "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/vision/analyzeImage",
+        "https://curl-safe.herokuapp.com/vision/analyzeImage",
         formData,
         {
           headers: {

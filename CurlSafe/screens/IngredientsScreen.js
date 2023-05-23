@@ -9,7 +9,7 @@ const IngredientsScreen = () => {
     const ingredientDatabase = async () => {
       try {
         const response = await axios.get(
-          "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/ingredients"
+          "https://curl-safe.herokuapp.com/ingredients"
         );
         setDatabaseIngredients(response.data);
       } catch (error) {
@@ -48,20 +48,6 @@ const IngredientsScreen = () => {
             }}
           />
         )
-        /*         databaseIngredients.map((item, index) => {
-          return (
-            <View style={styles.typeContainer}>
-              <View style={styles.headerContainer}>
-                <Text key={index} style={styles.headerTitle}>{item.type}</Text>
-              </View>
-              <View style={styles.ingredientsContainer}>
-                {item.ingredients.map((ingredient, index) => {
-                    return <Text style={styles.ingredientsText} key={index}>{`\u2022 ${ingredient}`}</Text>;
-                })}
-              </View>
-            </View>
-          );
-        }) */
       }
     </View>
   );
