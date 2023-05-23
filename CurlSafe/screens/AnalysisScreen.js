@@ -12,6 +12,7 @@ const AnalysisScreen = () => {
   const [soaps, setSoaps] = useState([]);
   const [wax, setWax] = useState([]);
   const [mineralOil, setMineralOil] = useState([]);
+  const [databaseIngredients, setDatabaseIngredients] = useState(null);
   const DATA = [
     {
       id: "25",
@@ -87,7 +88,6 @@ const AnalysisScreen = () => {
     trimWhitespaceQuotes(string)
   );
 
-  const [databaseIngredients, setDatabaseIngredients] = useState(null);
 
   useEffect(() => {
     const ingredientDatabase = async () => {
