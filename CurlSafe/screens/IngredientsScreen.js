@@ -1,32 +1,68 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
-import axios from 'axios';
+import { View, StyleSheet, Text } from "react-native";
+import axios from "axios";
 
 const IngredientsScreen = () => {
-    const [databaseIngredients, setDatabaseIngredients] = useState(null);
+  const [databaseIngredients, setDatabaseIngredients] = useState(null);
 
-    useEffect(() => {
-      const ingredientDatabase = async () => {
-        try {
-          const response = await axios.get(
-            "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/ingredients"
+  useEffect(() => {
+    const ingredientDatabase = async () => {
+      try {
+        const response = await axios.get(
+          "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/ingredients"
+        );
+        setDatabaseIngredients(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    ingredientDatabase();
+  }, []);
+  console.log(databaseIngredients);
+  return (
+    <View style={styles.pageContainer}>
+      {databaseIngredients &&
+        databaseIngredients.map((item, index) => {
+          return (
+            <View style={styles.typeContainer}>
+              <View style={styles.headerContainer}>
+                <Text key={index}>{item.type}</Text>
+              </View>
+              <View>
+                {item.ingredients.map((ingredient, index) => {
+                        <Text key={index}>{ingredient}</Text>
+                })}
+              </View>
+            </View>
           );
-          setDatabaseIngredients(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      ingredientDatabase();
-    }, []);
-    console.log(databaseIngredients)
-    return (
-    )
-}
+        })}
+    </View>
+  );
+};
 const styles = StyleSheet.create({
-    pageContainer: {
-        flex: 1,
-        backgroundColor: "#fbd029",
-    }
-})
+  pageContainer: {
+    flex: 1,
+    backgroundColor: "#fbd029",
+  },
+  typeContainer: {
+    margin: 5,
+    flex: 1,
+    borderRadius: 10,
+    backgroundColor: "white",
+    overflow: "hidden",
+    borderColor: "black",
+    borderWidth: 2,
+  },
+  headerContainer: {
+    backgroundColor: "#f8b71c",
+    flex: 1,
+    width: "100%",
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingHorizontal: 20,
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
+  },
+});
 
-export default IngredientsScreen
+export default IngredientsScreen;
