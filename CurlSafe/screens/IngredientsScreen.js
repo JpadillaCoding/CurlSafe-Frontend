@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, FlatList } from "react-native";
 import axios from "axios";
 
 const IngredientsScreen = () => {
@@ -18,11 +18,20 @@ const IngredientsScreen = () => {
     };
     ingredientDatabase();
   }, []);
-  console.log(databaseIngredients);
+  /* console.log(databaseIngredients); */
   return (
     <View style={styles.pageContainer}>
+        <Text>Curl Safe</Text>
       {databaseIngredients &&
-        databaseIngredients.map((item, index) => {
+      <FlatList 
+      data={databaseIngredients}
+      renderItem={({item}) => {
+        return (
+            
+        )
+      }}
+      />
+/*         databaseIngredients.map((item, index) => {
           return (
             <View style={styles.typeContainer}>
               <View style={styles.headerContainer}>
@@ -35,7 +44,8 @@ const IngredientsScreen = () => {
               </View>
             </View>
           );
-        })}
+        }) */
+        }
     </View>
   );
 };
