@@ -21,7 +21,7 @@ const IngredientsScreen = () => {
   /* console.log(databaseIngredients); */
   return (
     <View style={styles.pageContainer}>
-      <Text>Curl Safe</Text>
+      <Text style={styles.title}>Curl Safe</Text>
       {
         databaseIngredients && (
           <FlatList
@@ -33,6 +33,15 @@ const IngredientsScreen = () => {
                     <Text key={item.type} style={styles.headerTitle}>
                       {item.type}
                     </Text>
+                  </View>
+                  <View style={styles.ingredientsContainer}>
+                    {item.ingredients.map((ingredient, index) => {
+                      return (
+                        <Text style={styles.ingredientsText} key={index}>
+                          {`\u2022 ${ingredient}`}
+                        </Text>
+                      );
+                    })}
                   </View>
                 </View>
               );
@@ -58,6 +67,11 @@ const IngredientsScreen = () => {
   );
 };
 const styles = StyleSheet.create({
+  title: {
+    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontSize: 30,
+    textAlign: "center",
+  },
   pageContainer: {
     flex: 1,
     backgroundColor: "#fbd029",
