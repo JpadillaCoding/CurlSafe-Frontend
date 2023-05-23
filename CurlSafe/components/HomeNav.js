@@ -36,7 +36,7 @@ const DATA = [
     id:"45",
     title: "Search By Ingredient",
     icon: faMagnifyingGlass,
-    screen: "searchScreen",
+    screen: "SearchScreen",
     color: "#f8b71c"
   }
 ];
