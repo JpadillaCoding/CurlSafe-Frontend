@@ -26,11 +26,11 @@ const IngredientsScreen = () => {
           return (
             <View style={styles.typeContainer}>
               <View style={styles.headerContainer}>
-                <Text key={index}>{item.type}</Text>
+                <Text key={index} style={styles.headerTitle}>{item.type}</Text>
               </View>
-              <View>
+              <View style={styles.ingredientsContainer}>
                 {item.ingredients.map((ingredient, index) => {
-                        <Text key={index}>{ingredient}</Text>
+                    return <Text style={styles.ingredientsText} key={index}>{`\u2022 ${ingredient}`}</Text>;
                 })}
               </View>
             </View>
@@ -62,6 +62,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderBottomColor: "black",
     borderBottomWidth: 2,
+  },
+  ingredientsContainer: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingHorizontal: 20,
+  },
+  headerTitle: {
+    fontFamily: "RobotoCondensed_700Bold",
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  ingredientsText: {
+    fontFamily: "RobotoCondensed_400Regular",
   },
 });
 
