@@ -7,12 +7,6 @@ Check out the [Backend](https://github.com/JpadillaCoding/CurlSafe-Backend)!
 Available on the Google Play store!
 App store coming soon!
 
-## Screen shots
-
-<img src="CurlSafe/assets/HomePage.jpeg" alt="Curl safe Homepage">
-<img src="CurlSafe/assets/Analyzer.jpg" alt="Curl safe analyzer page">
-<img src="CurlSafe/assets/Ingredients.jpeg" alt="Curl safe Ingredients page">
-
 ## Technologies 
 
 <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
@@ -31,6 +25,12 @@ The Expo package made testing code extremely easy. It also has many packages tha
 
 - Searchable: Being able to check if an ingredient is on the CG Method do not use list. 
 - Allergies: User will add ingredients they are allergic to which the analyzer will look for. 
+
+## Screen shots
+
+<img src="CurlSafe/assets/Homepage.jpg" alt="Curl safe Homepage">
+<img src="CurlSafe/assets/Analyzer.jpg" alt="Curl safe analyzer page">
+<img src="CurlSafe/assets/Ingredients.jpg" alt="Curl safe Ingredients page">
 
 ## Acknowledgments 
 
