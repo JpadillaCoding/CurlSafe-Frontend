@@ -18,10 +18,16 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.CurlSafe",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -33,6 +39,11 @@
           "cameraPermission": "Allow $(CurlSafe) to access your camera."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1137362e-4b65-4c12-8de7-9b2309f9d0f3"
+      }
+    }
   }
 }
