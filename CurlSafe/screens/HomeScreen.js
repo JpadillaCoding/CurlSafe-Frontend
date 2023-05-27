@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomeNav from "../components/HomeNav";
 import { View, Text, StyleSheet } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchIngredients } from "../slices/ingredientsSlice";
 
 
 const HomeScreen = () => {
+
+  const dispatch = useDispatch()
+  const {ingredients, error, status} = useSelector((state) => state.ingredients)
+  useEffect(() => {
+    dispatch(fetchIngredients())
+  }, [dispatch])
+  
+  console.log("ingrdients: ", ingredients )
+  console.log("error: ", error)
+  console.log("status: ", status)
+  
   return (
     <View style={styles.container}>
       <View>
