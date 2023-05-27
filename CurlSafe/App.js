@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { Provider } from "react-redux"; //redux
+import { Provider, useDispatch, useSelector } from "react-redux"; //redux
 import { store } from "./store"; //redux
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -14,6 +14,8 @@ import SearchScreen from "./screens/SearchScreen";
 import { useFonts, RobotoCondensed_700Bold_Italic, RobotoCondensed_400Regular,RobotoCondensed_700Bold } from "@expo-google-fonts/roboto-condensed";
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold_Italic } from '@expo-google-fonts/playfair-display';
+import { useEffect } from "react";
+import { fetchIngredients } from "./slices/ingredientsSlice";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -30,6 +32,15 @@ export default function App() {
   if(!fontsLoaded) {
     return null
   }
+  const dispatch = useDispatch()
+  const {ingredients, error, status} = useSelector((state) => state.ingredients)
+  useEffect(() => {
+    dispatch(fetchIngredients())
+  }, [dispatch])
+
+  console.log("ingrdients: ", ingredients )
+  console.log("error: ", error)
+  console.log("status: ", status)
 
   return (
     <Provider store={store}>
