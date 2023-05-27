@@ -16,21 +16,21 @@ const DATA = [
     title: "Take A Picture",
     icon: faCamera,
     screen: "CameraScreen",
-    color : "#f8b71c"
+    color : "#8ea48e"
   },
   {
     id: "23",
     title: "Choose From Gallery",
     icon: faImages,
     screen: "GalleryScreen",
-    color: "#f8b71c"
+    color: "#8ea48e"
   },
   {
     id:"34",
     title: "Ingredient List",
     icon: faList,
     screen: "IngredientsScreen",
-    color: "#f8b71c" 
+    color: "#8ea48e" 
   },
   {
     id:"45",
@@ -51,7 +51,7 @@ const HomeNav = () => {
       renderItem={({ item }) => (
         <TouchableOpacity onPress={() => navigation.navigate(item.screen)}>
           <View style={styles.container}>
-            <FontAwesomeIcon icon={item.icon} style={styles.icons} size={70} />
+            <FontAwesomeIcon icon={item.icon} color={item.color} size={70} />
             <Text style={styles.titleText}>{item.title}</Text>
           </View>
         </TouchableOpacity>
@@ -61,11 +61,8 @@ const HomeNav = () => {
 };
 
 const styles = StyleSheet.create({
-  icons: {
-    color: "#fbd029",
-  },
   titleText: {
-    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontFamily: "PlayfairDisplay_400Regular",
   },
   container: {
     backgroundColor: "white",

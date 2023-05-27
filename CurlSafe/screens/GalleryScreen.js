@@ -43,7 +43,7 @@ const GalleryScreen = () => {
     console.log("working on it..");
     await axios
       .post(
-        "https://236d-2601-2c4-4600-c3b0-c91e-638c-49d-edce.ngrok-free.app/vision/analyzeImage",
+        "https://curl-safe.herokuapp.com/vision/analyzeImage",
         formData,
         {
           headers: {
@@ -58,6 +58,8 @@ const GalleryScreen = () => {
       })
       .catch((error) => {
         console.log(error);
+        alert("Analysis failed")
+        navigation.navigate("HomeScreen")
       });
   };
 
@@ -70,15 +72,15 @@ const GalleryScreen = () => {
             {showLoading && <Loader />}
           </View>
           <View style={styles.buttonContainer}>
-            <Button onPress={pickImage} icon={faRetweet} color={"#fbd029"} />
-            <Button onPress={analyze} icon={faPaperPlane} color={"#fbd029"} />
+            <Button onPress={pickImage} icon={faRetweet} color={"#8ea48e"} />
+            <Button onPress={analyze} icon={faPaperPlane} color={"#8ea48e"} />
           </View>
         </View>
       ) : (
         <View style={styles.chooseImageContainer}>
           <Text style={styles.chooseImageTitle}>Curl Safe</Text>
           <TouchableOpacity style={styles.chooseImagebutton} onPress={pickImage}>
-            <FontAwesomeIcon icon={faImage} color={"#fbd029"} size={70} />
+            <FontAwesomeIcon icon={faImage} color={"#8ea48e"} size={70} />
             <Text style={styles.buttonText}>Choose Image</Text>
           </TouchableOpacity>
         </View>
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
   },
   chooseImageContainer: {
     flex: 1,
-    backgroundColor: "#fbd029",
+    backgroundColor: "#455e44",
   },
   imageContainer: {
     flex: 1,
