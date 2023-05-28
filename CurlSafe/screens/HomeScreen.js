@@ -19,6 +19,7 @@ const HomeScreen = () => {
         <Text style={styles.title}>Curl Safe</Text>
       </View>
       <HomeNav />
+
     </View>
   );
 };
@@ -29,6 +30,10 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 52,
     fontFamily: "PlayfairDisplay_700Bold_Italic",
+    color: 'white',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -2, height: 1},
+    textShadowRadius: 5,
   },
   container: {
     backgroundColor: "#455e44",

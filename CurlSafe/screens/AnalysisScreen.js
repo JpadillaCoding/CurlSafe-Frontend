@@ -179,6 +179,10 @@ const styles = StyleSheet.create({
     fontFamily: "PlayfairDisplay_700Bold_Italic",
     fontSize: 30,
     textAlign: "center",
+    color: 'white',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -2, height: 1},
+    textShadowRadius: 5,
   },
   analysisScreen: {
     backgroundColor: "#455e44",

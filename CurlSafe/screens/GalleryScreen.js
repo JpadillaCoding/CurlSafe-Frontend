@@ -133,6 +133,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     fontFamily: "RobotoCondensed_700Bold_Italic",
+    color: 'white',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -2, height: 1},
+    textShadowRadius: 5,
   },
 });
 

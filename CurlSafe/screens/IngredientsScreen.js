@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
     fontFamily: "RobotoCondensed_700Bold_Italic",
     fontSize: 30,
     textAlign: "center",
+    color: 'white',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -2, height: 1},
+    textShadowRadius: 5,
   },
   pageContainer: {
     flex: 1,
@@ -87,9 +91,10 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontFamily: "RobotoCondensed_700Bold",
-    fontSize: 18,
+    fontSize: 20,
     textAlign: "center",
     marginBottom: 10,
+    color: '#303030'
   },
   ingredientsText: {
     fontFamily: "RobotoCondensed_400Regular",
