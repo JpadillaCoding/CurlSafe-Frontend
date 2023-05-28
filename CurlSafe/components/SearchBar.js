@@ -1,10 +1,9 @@
 import React from "react";
-import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
+import { View, StyleSheet, TextInput, Pressable, Text, Keyboard } from "react-native";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-const SearchBar = ({ /* clicked, */ searchPhrase, setSearchPhrase, setClicked }) => {
-    const clicked = true
+const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
   return (
     <View style={styles.searchBarContainer}>
       <View style={clicked ? styles.searchBar_clicked : styles.searchBar_unclicked}>
@@ -15,7 +14,7 @@ const SearchBar = ({ /* clicked, */ searchPhrase, setSearchPhrase, setClicked })
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           onFocus={() => {
-            // setClicked(true); 
+            setClicked(true); 
           }}
         />
         {clicked && (
@@ -26,19 +25,11 @@ const SearchBar = ({ /* clicked, */ searchPhrase, setSearchPhrase, setClicked })
       </View>
       {clicked && (
         <View>
-{/*           <Button
-            title="Cancel"
-            style={styles.cancelButton}
-            onPress={() => {
-              Keyboard.dismiss();
-            // setClicked(false); 
-            }}
-          /> */}
           <Pressable 
           style={styles.cancelButton}
           onPress={() => {
             Keyboard.dismiss();
-          // setClicked(false); 
+            setClicked(false); 
           }}>
             <Text style={styles.cancelButtonText}>Cancel</Text>
           </Pressable>

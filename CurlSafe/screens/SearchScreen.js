@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import SearchBar from "../components/SearchBar";
 
 const SearchScreen = () => {
+    const [clicked, setClicked] = useState(false)
+    const [searchPhrase, setSearchPhrase] = useState('')
   return (
     <View style={styles.searchScreenContainer}>
       <Text style={styles.searchScreenTitle}>Curl Safe</Text>
-      <SearchBar />
+      <SearchBar clicked={clicked} setClicked={setClicked} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase}/>
     </View>
   );
 };
