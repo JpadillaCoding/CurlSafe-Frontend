@@ -29,7 +29,6 @@ const ingredientsSlice = createSlice({
       .addCase(fetchIngredients.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.ingredients = action.payload;
-        // why action?
       })
       .addCase(fetchIngredients.rejected, (state, action) => {
         state.status = "failed";
