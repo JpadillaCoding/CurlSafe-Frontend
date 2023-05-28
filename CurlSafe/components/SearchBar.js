@@ -13,6 +13,7 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
           placeholder="Search"
           value={searchPhrase}
           onChangeText={setSearchPhrase}
+          selectionColor={'#8ea48e'}
           onFocus={() => {
             setClicked(true); 
           }}
