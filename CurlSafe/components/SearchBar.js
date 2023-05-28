@@ -1,9 +1,10 @@
 import React from "react";
-import { View, StyleSheet, TextInput } from "react-native";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { View, StyleSheet, TextInput, Button } from "react-native";
+import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
+const SearchBar = ({ /* clicked, */ searchPhrase, setSearchPhrase, setClicked }) => {
+    const clicked = true
   return (
     <View style={styles.searchBarContainer}>
       <View style={clicked ? styles.searchbar_clicked : styles.searchbar_unclicked}>
@@ -14,11 +15,27 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           onFocus={() => {
-            setClicked(true);
+            /* setClicked(true); */
           }}
         />
+        {clicked && (
+          <FontAwesomeIcon icon={faXmark} size={20} color="black" style={{ padding: 1 }} onPress={() => {
+              setSearchPhrase("")
+          }}/>
+        )}
       </View>
-    </View>
+      {clicked && (
+        <View>
+          <Button
+            title="Cancel"
+            onPress={() => {
+              Keyboard.dismiss();
+              /* setClicked(false); */
+            }}
+          ></Button>
+        </View>
+      )}
+      </View>
   );
 };
 
