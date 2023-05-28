@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 15,
         alignItems: "center",
+        borderColor: 'black',
+        borderWidth: 2,
       },
       searchBar_clicked: {
         padding: 10,
@@ -64,6 +66,8 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         alignItems: "center",
         justifyContent: "space-evenly",
+        borderColor: 'black',
+        borderWidth: 2,
       },
       input: {
         fontSize: 20,

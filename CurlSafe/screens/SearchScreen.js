@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import SearchBar from "../components/SearchBar";
+import { useSelector } from "react-redux";
 
 const SearchScreen = () => {
     const [clicked, setClicked] = useState(false)
     const [searchPhrase, setSearchPhrase] = useState('')
+    const databaseIngredients = useSelector((state) => state.ingredients.ingredients)
+    console.log(databaseIngredients)
   return (
     <View style={styles.searchScreenContainer}>
       <Text style={styles.searchScreenTitle}>Curl Safe</Text>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import HomeNav from "../components/HomeNav";
 import { View, Text, StyleSheet } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchIngredients } from "../slices/ingredientsSlice";
 
 
