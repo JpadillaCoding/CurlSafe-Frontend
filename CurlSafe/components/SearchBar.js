@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TextInput, Button } from "react-native";
+import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
@@ -26,13 +26,22 @@ const SearchBar = ({ /* clicked, */ searchPhrase, setSearchPhrase, setClicked })
       </View>
       {clicked && (
         <View>
-          <Button
+{/*           <Button
             title="Cancel"
+            style={styles.cancelButton}
             onPress={() => {
               Keyboard.dismiss();
             // setClicked(false); 
             }}
-          ></Button>
+          /> */}
+          <Pressable 
+          style={styles.cancelButton}
+          onPress={() => {
+            Keyboard.dismiss();
+          // setClicked(false); 
+          }}>
+            <Text style={styles.cancelButtonText}>Cancel</Text>
+          </Pressable>
         </View>
       )}
       </View>
@@ -50,7 +59,7 @@ const styles = StyleSheet.create({
       searchBar_unclicked: {
         padding: 10,
         flexDirection: "row",
-        width: "95%",
+        width: "100%",
         backgroundColor: "#d9dbda",
         borderRadius: 15,
         alignItems: "center",
@@ -68,6 +77,21 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginLeft: 10,
         width: "90%",
+      },
+      cancelButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 12,
+        borderRadius: 4,
+        backgroundColor: 'rgba(0,0,0,0)',
+      },
+      cancelButtonText: {
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'white',
       },
 });
 export default SearchBar;
