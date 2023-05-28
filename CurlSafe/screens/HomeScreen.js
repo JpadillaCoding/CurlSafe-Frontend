@@ -16,7 +16,7 @@ const HomeScreen = () => {
   console.log("ingrdients: ", ingredients )
   console.log("error: ", error)
   console.log("status: ", status)
-  
+  console.log(useSelector((state) => state.ingredients))
   return (
     <View style={styles.container}>
       <View>

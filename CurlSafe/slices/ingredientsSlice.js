@@ -18,7 +18,7 @@ export const fetchIngredients = createAsyncThunk("/ingredients", async () => {
   }
 });
 
-const resultsSlice = createSlice({
+const ingredientsSlice = createSlice({
   name: "ingredients",
   initialState,
   extraReducers: (builder) => {
@@ -26,15 +26,16 @@ const resultsSlice = createSlice({
       .addCase(fetchIngredients.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchIngredients.fulfilled, (state) => {
+      .addCase(fetchIngredients.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.ingredients = action.payload;
+        // why action?
       })
-      .addCase(fetchIngredients.rejected, (state) => {
+      .addCase(fetchIngredients.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export const { actions, reducer } = resultsSlice;
+export const { actions, reducer } = ingredientsSlice;
