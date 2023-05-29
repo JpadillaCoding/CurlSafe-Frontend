@@ -1,10 +1,10 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faMagnifyingGlass,
   faXmark,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   View,
   StyleSheet,

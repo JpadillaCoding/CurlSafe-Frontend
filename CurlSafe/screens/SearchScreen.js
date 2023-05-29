@@ -9,16 +9,28 @@ const SearchScreen = () => {
   const databaseIngredients = useSelector(
     (state) => state.ingredients.ingredients
   );
-  // why does adding curly braces to arrow function make undefined?
+  // why does adding curly braces to arrow function make undefined? ^
+  const stringHarmonization = (string) => {
+    const regex = /^-+|-+$/g;
+    const newString = string
+      .replace(regex, " ")
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    console.log("new String: ", newString);
+    return newString;
+  };
   const analyze = () => {
-    if(databaseIngredients){
-      databaseIngredients.forEach(ingredientType => {
-        ingredientType.ingredients.forEach(ingredient => {
-          if(searchPhrase == ingredient){
-            console.log("matched: ", searchPhrase)
-            console.log("to item: ", ingredient)
+    const searchPhraseStandarized = stringHarmonization(searchPhrase);
+    if (databaseIngredients) {
+      databaseIngredients.forEach((ingredientType) => {
+        ingredientType.ingredients.forEach((ingredient) => {
+          if (searchPhrase == ingredient) {
+            console.log("matched: ", searchPhraseStandarized);
+            console.log("to item: ", ingredient);
           }
-        })
+        });
       });
     }
   };
