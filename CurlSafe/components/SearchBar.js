@@ -1,5 +1,9 @@
 import React from "react";
-import { faMagnifyingGlass, faXmark, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faXmark,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   View,
@@ -10,7 +14,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
+const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked, analyze }) => {
   return (
     <View style={styles.searchBarContainer}>
       <View
@@ -26,15 +30,31 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
           onFocus={() => setClicked(true)}
         />
         {clicked && (
-          <Pressable onPress={() => { setSearchPhrase("")}}>
-            <FontAwesomeIcon icon={faXmark} size={25} color="black" style={{ padding: 1 }} />
+          <Pressable
+            onPress={() => {
+              setSearchPhrase("");
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faXmark}
+              size={25}
+              color="black"
+              style={{ padding: 1 }}
+            />
           </Pressable>
         )}
       </View>
       {clicked && (
         <View>
-          <TouchableOpacity style={styles.analyzeButton} onPress={() => console.log("analyze")}>
-            <FontAwesomeIcon icon={faPaperPlane} size={36} color={'white'}/>
+          <TouchableOpacity
+            style={styles.analyzeButton}
+            onPress={() => {
+              analyze()
+              Keyboard.dismiss();
+              setClicked(false);
+            }}
+          >
+            <FontAwesomeIcon icon={faPaperPlane} size={36} color={"white"} />
           </TouchableOpacity>
         </View>
       )}

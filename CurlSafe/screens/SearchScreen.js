@@ -4,19 +4,35 @@ import SearchBar from "../components/SearchBar";
 import { useSelector } from "react-redux";
 
 const SearchScreen = () => {
-    const [clicked, setClicked] = useState(false)
-    const [searchPhrase, setSearchPhrase] = useState('')
-    const databaseIngredients = useSelector((state) => state.ingredients.ingredients)
-    // why does adding curly braces to arrow function make undefined?
-    const analyze = () => {
-      return (
-        <FlatList />
-      )
+  const [clicked, setClicked] = useState(false);
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const databaseIngredients = useSelector(
+    (state) => state.ingredients.ingredients
+  );
+  // why does adding curly braces to arrow function make undefined?
+  const analyze = () => {
+    if(databaseIngredients){
+      databaseIngredients.forEach(ingredientType => {
+        ingredientType.ingredients.forEach(ingredient => {
+          if(searchPhrase == ingredient){
+            console.log("matched: ", searchPhrase)
+            console.log("to item: ", ingredient)
+          }
+        })
+      });
     }
+  };
   return (
     <View style={styles.searchScreenContainer}>
       <Text style={styles.searchScreenTitle}>Curl Safe</Text>
-      <SearchBar clicked={clicked} setClicked={setClicked} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase}/>
+      <SearchBar
+        clicked={clicked}
+        setClicked={setClicked}
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+        analyze={analyze}
+      />
+      {databaseIngredients && <Text>Hello</Text>}
     </View>
   );
 };
