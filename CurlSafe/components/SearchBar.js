@@ -15,6 +15,8 @@ import {
 } from "react-native";
 
 const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked, analyze }) => {
+  const keybaordHideListener = Keyboard.addListener('keyboardDidHide', () => setClicked(false))
+  
   return (
     <View style={styles.searchBarContainer}>
       <View
@@ -38,7 +40,7 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked, analyze
             <FontAwesomeIcon
               icon={faXmark}
               size={25}
-              color="black"
+              color="#455e44"
               style={{ padding: 1 }}
             />
           </Pressable>
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 20,
     marginLeft: 10,
-    width: "90%",
+    width: "85%",
   },
   analyzeButton: {
     alignItems: "center",

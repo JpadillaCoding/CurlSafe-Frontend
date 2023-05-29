@@ -17,8 +17,7 @@ const SearchScreen = () => {
       .toLowerCase()
       .replace(/\s+/g, ' ')
       .trim();
-
-    console.log("new String: ", newString);
+      console.log(newString)
     return newString;
   };
   const analyze = () => {
@@ -26,7 +25,7 @@ const SearchScreen = () => {
     if (databaseIngredients) {
       databaseIngredients.forEach((ingredientType) => {
         ingredientType.ingredients.forEach((ingredient) => {
-          if (searchPhrase == ingredient) {
+          if (searchPhraseStandarized == ingredient) {
             console.log("matched: ", searchPhraseStandarized);
             console.log("to item: ", ingredient);
           }
