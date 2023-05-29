@@ -16,7 +16,7 @@ import {
 
 const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked, analyze }) => {
   const keybaordHideListener = Keyboard.addListener('keyboardDidHide', () => setClicked(false))
-  
+  const keybaordShowListener = Keyboard.addListener('keyboardDidShow', () => setClicked(true))
   return (
     <View style={styles.searchBarContainer}>
       <View
@@ -29,7 +29,6 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked, analyze
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           selectionColor={"#8ea48e"}
-          onFocus={() => setClicked(true)}
         />
         {clicked && (
           <Pressable
@@ -53,7 +52,6 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked, analyze
             onPress={() => {
               analyze()
               Keyboard.dismiss();
-              setClicked(false);
             }}
           >
             <FontAwesomeIcon icon={faPaperPlane} size={36} color={"white"} />
