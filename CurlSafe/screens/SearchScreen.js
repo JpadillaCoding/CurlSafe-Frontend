@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, FlatList } from "react-native";
 import SearchBar from "../components/SearchBar";
 import { useSelector } from "react-redux";
 
@@ -7,7 +7,12 @@ const SearchScreen = () => {
     const [clicked, setClicked] = useState(false)
     const [searchPhrase, setSearchPhrase] = useState('')
     const databaseIngredients = useSelector((state) => state.ingredients.ingredients)
-    console.log(databaseIngredients)
+    // why does adding curly braces to arrow function make undefined?
+    const analyze = () => {
+      return (
+        <FlatList />
+      )
+    }
   return (
     <View style={styles.searchScreenContainer}>
       <Text style={styles.searchScreenTitle}>Curl Safe</Text>
