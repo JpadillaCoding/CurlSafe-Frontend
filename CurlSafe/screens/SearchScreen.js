@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 const SearchScreen = () => {
   const [clicked, setClicked] = useState(false);
   const [searchPhrase, setSearchPhrase] = useState("");
+  const [matchType, setMatchType] = useState(null)
+  const [matchIngredient, setMatchIngredient] = useState(null)
   const databaseIngredients = useSelector(
     (state) => state.ingredients.ingredients
   );
@@ -15,24 +17,28 @@ const SearchScreen = () => {
     const newString = string
       .replace(regex, " ")
       .toLowerCase()
-      .replace(/\s+/g, ' ')
+      .replace(/\s+/g, " ")
       .trim();
-      console.log(newString)
+    console.log(newString);
     return newString;
   };
+
   const analyze = () => {
     const searchPhraseStandarized = stringHarmonization(searchPhrase);
+
     if (databaseIngredients) {
-      databaseIngredients.forEach((ingredientType) => {
-        ingredientType.ingredients.forEach((ingredient) => {
+      databaseIngredients.forEach((item) => {
+        item.ingredients.forEach((ingredient) => {
           if (searchPhraseStandarized == ingredient) {
-            console.log("matched: ", searchPhraseStandarized);
-            console.log("to item: ", ingredient);
+            setMatchType(item.type);
+            setMatchIngredient(ingredient)
+            //add break here
           }
         });
       });
     }
   };
+
   return (
     <View style={styles.searchScreenContainer}>
       <Text style={styles.searchScreenTitle}>Curl Safe</Text>
@@ -43,10 +49,20 @@ const SearchScreen = () => {
         setSearchPhrase={setSearchPhrase}
         analyze={analyze}
       />
-      {databaseIngredients && <Text>Hello</Text>}
+      {matchType && (
+        <View>
+          <View>
+            <Text>{matchType}</Text>
+          </View>
+          <View>
+            <Text>{matchIngredient}</Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   searchScreenContainer: {
     flex: 1,
