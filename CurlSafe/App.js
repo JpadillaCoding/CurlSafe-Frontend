@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux"; //redux
 import { store } from "./store"; //redux
@@ -9,10 +9,11 @@ import HomeScreen from "./screens/HomeScreen";
 import CameraScreen from "./screens/CameraScreen";
 import GalleryScreen from "./screens/GalleryScreen";
 import AnalysisScreen from "./screens/AnalysisScreen";
+import IngredientsScreen from "./screens/IngredientsScreen";
+import SearchScreen from "./screens/SearchScreen";
 import { useFonts, RobotoCondensed_700Bold_Italic, RobotoCondensed_400Regular,RobotoCondensed_700Bold } from "@expo-google-fonts/roboto-condensed";
 import { Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold_Italic } from '@expo-google-fonts/playfair-display';
-import IngredientsScreen from "./screens/IngredientsScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -70,6 +71,13 @@ export default function App() {
               options={{
                 headerShown: false,
               }}
+            />
+            <Stack.Screen 
+            name="SearchScreen"
+            component={SearchScreen}
+            options={{
+              headerShown: false,
+            }}
             />
           </Stack.Navigator>
         </SafeAreaView>

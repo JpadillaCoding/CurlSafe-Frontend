@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faCamera, faImages, faList } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faImages, faList, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useNavigation } from "@react-navigation/native";
 import {
   FlatList,
@@ -27,11 +27,18 @@ const DATA = [
   },
   {
     id:"34",
-    title: "Ingredients",
+    title: "Ingredient List",
     icon: faList,
     screen: "IngredientsScreen",
     color: "#8ea48e" 
   },
+  {
+    id:"45",
+    title: "Search By Ingredient",
+    icon: faMagnifyingGlass,
+    screen: "SearchScreen",
+    color: "#8ea48e"
+  }
 ];
 
 const HomeNav = () => {
