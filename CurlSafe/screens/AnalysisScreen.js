@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "PlayfairDisplay_700Bold_Italic",
-    fontSize: 30,
+    fontSize: 36,
     textAlign: "center",
     color: 'white',
     textShadowColor: 'black',
@@ -199,14 +199,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   headerTitle: {
-    fontFamily: "PlayfairDisplay_700Bold_Italic",
-    fontSize: 18,
+    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontSize: 22,
     textAlign: "center",
     marginBottom: 10,
+    color: "#303030"
   },
   description: {
-    fontFamily: "PlayfairDisplay_400Regular",
-    fontSize: 13,
+    fontFamily: "RobotoCondensed_400Regular",
+    fontSize: 14,
   },
   matchesContainer: {
     paddingTop: 10,
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   matchesText: {
-    fontFamily: "PlayfairDisplay_400Regular",
+    fontFamily: "RobotoCondensed_400Regular",
   },
 });
 

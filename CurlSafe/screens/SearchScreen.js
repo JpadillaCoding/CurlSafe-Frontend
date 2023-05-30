@@ -27,7 +27,6 @@ const SearchScreen = () => {
 
     if (databaseIngredients) {
       let matchFound = false
-
       for( const item of databaseIngredients) {
         for(const ingredient of item.ingredients){
           if (searchPhraseStandarized == ingredient) {
@@ -76,8 +75,8 @@ const styles = StyleSheet.create({
   searchScreenTitle: {
     padding: 20,
     textAlign: "center",
-    fontSize: 30,
-    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontSize: 36,
+    fontFamily: "PlayfairDisplay_700Bold_Italic",
     color: "white",
     textShadowColor: "black",
     textShadowOffset: { width: -2, height: 1 },

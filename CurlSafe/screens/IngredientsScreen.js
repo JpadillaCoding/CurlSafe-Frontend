@@ -53,8 +53,8 @@ const IngredientsScreen = () => {
 };
 const styles = StyleSheet.create({
   title: {
-    fontFamily: "RobotoCondensed_700Bold_Italic",
-    fontSize: 30,
+    fontFamily: "PlayfairDisplay_700Bold_Italic",
+    fontSize: 36,
     textAlign: "center",
     color: 'white',
     textShadowColor: 'black',

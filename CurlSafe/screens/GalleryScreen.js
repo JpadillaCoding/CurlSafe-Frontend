@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
   chooseImageTitle: {
     padding: 20,
     textAlign: 'center',
-    fontSize: 30,
-    fontFamily: "RobotoCondensed_700Bold_Italic",
+    fontSize: 36,
+    fontFamily: "PlayfairDisplay_700Bold_Italic",
     color: 'white',
     textShadowColor: 'black',
     textShadowOffset: {width: -2, height: 1},
