@@ -49,16 +49,14 @@ const SearchScreen = () => {
         setSearchPhrase={setSearchPhrase}
         analyze={analyze}
       />
-      {matchType && (
-        <View>
-          <View>
-            <Text>{matchType}</Text>
+        <View style={styles.matchContainer}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.headerTitle}>Your search matched under the catagory: </Text>
           </View>
-          <View>
-            <Text>{matchIngredient}</Text>
+          <View style={styles.ingredientsContainer}>
+            <Text style={styles.ingredientsText}>{matchType ? matchType : "No Match"}</Text>
           </View>
         </View>
-      )}
     </View>
   );
 };
@@ -77,6 +75,43 @@ const styles = StyleSheet.create({
     textShadowColor: "black",
     textShadowOffset: { width: -2, height: 1 },
     textShadowRadius: 5,
+  },
+  matchContainer: {
+    margin: 5,
+    borderRadius: 10,
+    backgroundColor: "white",
+    overflow: "hidden",
+    borderColor: "black",
+    borderWidth: 2,
+    height: 150,
+  },
+  headerContainer: {
+    backgroundColor: "#8ea48e",
+    flex: 1,
+    width: "100%",
+    height: "20%",
+    paddingTop: 10,
+
+    paddingHorizontal: 20,
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
+  },
+  headerTitle: {
+    fontFamily: "RobotoCondensed_700Bold",
+    fontSize: 20,
+    textAlign: "center",
+    marginBottom: 10,
+    color: '#303030'
+  },
+  ingredientsContainer: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingHorizontal: 20,
+  },
+  ingredientsText: {
+    fontFamily: "RobotoCondensed_700Bold",
+    fontSize: 18,
+    textAlign:"center"
   },
 });
 
