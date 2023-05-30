@@ -19,7 +19,6 @@ const SearchScreen = () => {
       .toLowerCase()
       .replace(/\s+/g, " ")
       .trim();
-    console.log(newString);
     return newString;
   };
 
@@ -27,15 +26,23 @@ const SearchScreen = () => {
     const searchPhraseStandarized = stringHarmonization(searchPhrase);
 
     if (databaseIngredients) {
-      databaseIngredients.forEach((item) => {
-        item.ingredients.forEach((ingredient) => {
+      let matchFound = false
+
+      for( const item of databaseIngredients) {
+        for(const ingredient of item.ingredients){
           if (searchPhraseStandarized == ingredient) {
             setMatchType(item.type);
-            setMatchIngredient(ingredient)
-            //add break here
+            matchFound = true
+            break;
           }
-        });
-      });
+        }
+        if(matchFound) {
+          break;
+        }
+      }
+      if(!matchFound) {
+        setMatchType("")
+      }
     }
   };
 
@@ -83,7 +90,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderColor: "black",
     borderWidth: 2,
-    height: 150,
+    height: 140,
   },
   headerContainer: {
     backgroundColor: "#8ea48e",
