@@ -1,53 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
-import axios from "axios";
+import { useSelector } from "react-redux";
 
 const IngredientsScreen = () => {
-  const [databaseIngredients, setDatabaseIngredients] = useState(null);
+  const databaseIngredients = useSelector(
+    (state) => state.ingredients.ingredients
+  );
 
-  useEffect(() => {
-    const ingredientDatabase = async () => {
-      try {
-        const response = await axios.get(
-          "https://curl-safe.herokuapp.com/ingredients"
-        );
-        setDatabaseIngredients(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    ingredientDatabase();
-  }, []);
   return (
     <View style={styles.pageContainer}>
       <Text style={styles.title}>Curl Safe</Text>
-      {
-        databaseIngredients && (
-          <FlatList
-            data={databaseIngredients}
-            renderItem={({ item }) => {
-              return (
-                <View style={styles.typeContainer}>
-                  <View style={styles.headerContainer}>
-                    <Text key={item.type} style={styles.headerTitle}>
-                      {item.type}
-                    </Text>
-                  </View>
-                  <View style={styles.ingredientsContainer}>
-                    {item.ingredients.map((ingredient, index) => {
-                      return (
-                        <Text style={styles.ingredientsText} key={index}>
-                          {`\u2022 ${ingredient}`}
-                        </Text>
-                      );
-                    })}
-                  </View>
+      {databaseIngredients && (
+        <FlatList
+          data={databaseIngredients}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.typeContainer}>
+                <View style={styles.headerContainer}>
+                  <Text key={item.type} style={styles.headerTitle}>
+                    {item.type}
+                  </Text>
                 </View>
-              );
-            }}
-          />
-        )
-      }
+                <View style={styles.ingredientsContainer}>
+                  {item.ingredients.map((ingredient, index) => {
+                    return (
+                      <Text style={styles.ingredientsText} key={index}>
+                        {`\u2022 ${ingredient}`}
+                      </Text>
+                    );
+                  })}
+                </View>
+              </View>
+            );
+          }}
+        />
+      )}
     </View>
   );
 };
@@ -56,9 +43,9 @@ const styles = StyleSheet.create({
     fontFamily: "PlayfairDisplay_700Bold_Italic",
     fontSize: 36,
     textAlign: "center",
-    color: 'white',
-    textShadowColor: 'black',
-    textShadowOffset: {width: -2, height: 1},
+    color: "white",
+    textShadowColor: "black",
+    textShadowOffset: { width: -2, height: 1 },
     textShadowRadius: 5,
   },
   pageContainer: {
@@ -94,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     marginBottom: 10,
-    color: '#303030'
+    color: "#303030",
   },
   ingredientsText: {
     fontFamily: "RobotoCondensed_400Regular",
