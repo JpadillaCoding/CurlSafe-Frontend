@@ -129,7 +129,9 @@ const CameraScreen = () => {
         </Camera>
       ) : (
         <View style={styles.previewContainer}>
-          <Image source={{ uri: image }} style={styles.camera} />
+          <View style={styles.imageContainer}>
+          <Image source={{ uri: image }} style={styles.imageStyle}/>
+          </View>
           {showLoading && <Loader />}
           <View style={styles.previewButtonContainer}>
             <Button icon={faRepeat} color={"#8ea48e"} onPress={retakePicture} />
@@ -145,13 +147,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
-  },
-  camera: {
-    height: "100%",
-    width: "100%",
-    borderRadius: 20,
-    flex: 1,
-    justifyContent: "flex-end",
   },
   buttonContainer: {
     flexDirection: "row",
@@ -177,6 +172,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  imageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
+    paddingTop: 5,
+  },
+  imageStyle: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 20,
+  },
+  camera: {
+    height: "100%",
+    width: "100%",
+    borderRadius: 20,
+    flex: 1,
+    justifyContent: "flex-end",
   },
   outerCircle: {
     width: 88,
