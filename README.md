@@ -26,11 +26,22 @@ The Expo package made testing code extremely easy. It also has many packages tha
 - Searchable: Being able to check if an ingredient is on the CG Method do not use list. 
 - Allergies: User will add ingredients they are allergic to which the analyzer will look for. 
 
-## Screen shots
+## Screenshots
 
 <img src="CurlSafe/assets/Homepage.jpg" alt="Curl safe Homepage">
 <img src="CurlSafe/assets/Analyzer.jpg" alt="Curl safe analyzer page">
 <img src="CurlSafe/assets/Ingredients.jpg" alt="Curl safe Ingredients page">
+
+## Bugs Spreadsheet 
+
+A peer introduced me to tracking bugs for 4 reasons. 
+- Being able to reference what I did for problems that may pop up again
+- Even if it's not the same problem, the archive can help me debug. 
+- Save time by avoiding duplicate work and by ensuring that bugs are not being overlooked 
+- Showing future employers problems that I come across and how I was able to handle them
+
+Ever since I was introduced, I've introduced the bug tracking system.
+Check out the [spreadsheet](https://docs.google.com/spreadsheets/d/1AnkQHyOJvGC9OME0xiNRgRaY0g2Fr8wp9TOr22Vx2eo/edit?usp=sharing)!
 
 ## Acknowledgments 
 

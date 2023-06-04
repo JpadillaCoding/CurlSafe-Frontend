@@ -25,7 +25,6 @@ const GalleryScreen = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [3, 4],
       quality: 1,
     });
 
@@ -102,18 +101,19 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    position: "relative",
-    paddingBottom: 10,
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  imageStyle: {
+    width: "100%",
+    height: undefined,
+    aspectRatio: 1,
+    resizeMode: "contain",
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-  },
-  imageStyle: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 20,
   },
   chooseImagebutton: {
     marginTop: 15,

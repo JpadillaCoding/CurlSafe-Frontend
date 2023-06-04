@@ -29,6 +29,7 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked, analyze
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           selectionColor={"#8ea48e"}
+          onSubmitEditing={() => {analyze(); setClicked(false);}}
         />
         {clicked && (
           <Pressable
