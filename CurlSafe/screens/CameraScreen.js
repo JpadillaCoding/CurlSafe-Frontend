@@ -106,6 +106,7 @@ const CameraScreen = () => {
           flashMode={flash}
           ref={cameraRef}
           style={styles.camera}
+          autoFocus={Camera.Constants.AutoFocus.on}
         >
           <View style={styles.buttonContainer}>
             <Button icon={faRepeat} color={"#8ea48e"} onPress={flipCamera} />
