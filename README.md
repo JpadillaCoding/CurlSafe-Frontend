@@ -23,8 +23,9 @@ The Expo package made testing code extremely easy. It also has many packages tha
 
 ## Upcoming Features
 
-- Searchable: Being able to check if an ingredient is on the CG Method do not use list. 
 - Allergies: User will add ingredients they are allergic to which the analyzer will look for. 
+
+- Add a button that leads to other resources- the acknowledgement list in this readme
 
 ## Screenshots
 
