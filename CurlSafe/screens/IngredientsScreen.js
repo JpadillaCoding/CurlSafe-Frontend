@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
-import axios from "axios";
+import { useSelector } from "react-redux";
 
 const IngredientsScreen = () => {
-  const [databaseIngredients, setDatabaseIngredients] = useState(null);
+  const databaseIngredients = useSelector(
+    (state) => state.ingredients.ingredients
+  );
 
-  useEffect(() => {
-    const ingredientDatabase = async () => {
-      try {
-        const response = await axios.get(
-          "https://curl-safe.herokuapp.com/ingredients"
-        );
-        setDatabaseIngredients(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    ingredientDatabase();
-  }, []);
+  console.log(databaseIngredients)
   return (
     <View style={styles.pageContainer}>
       <Text style={styles.title}>Curl Safe</Text>
