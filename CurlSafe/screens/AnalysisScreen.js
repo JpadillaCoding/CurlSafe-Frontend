@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native/";
 import { useSelector } from "react-redux";
-import axios from "axios";
 
 const AnalysisScreen = () => {
   const [sulfates, setSulfates] = useState([]);
@@ -12,7 +11,9 @@ const AnalysisScreen = () => {
   const [soaps, setSoaps] = useState([]);
   const [wax, setWax] = useState([]);
   const [mineralOil, setMineralOil] = useState([]);
-  const [databaseIngredients, setDatabaseIngredients] = useState(null);
+  const databaseIngredients = useSelector(
+    (state) => state.ingredients.ingredients
+  );
   const DATA = [
     {
       id: "25",
@@ -88,20 +89,6 @@ const AnalysisScreen = () => {
     trimWhitespaceQuotes(string)
   );
 
-
-  useEffect(() => {
-    const ingredientDatabase = async () => {
-      try {
-        const response = await axios.get(
-          "https://curl-safe.herokuapp.com/ingredients"
-        );
-        setDatabaseIngredients(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    ingredientDatabase();
-  }, []);
   useEffect(() => {
     //use effect is needed or too many renders error occurs
     if (databaseIngredients) {
