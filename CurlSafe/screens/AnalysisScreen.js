@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet, FlatList } from "react-native/";
 import { useSelector } from "react-redux";
 
@@ -124,7 +125,7 @@ const AnalysisScreen = () => {
   console.log("done");
 
   return (
-    <View style={styles.analysisScreen}>
+    <SafeAreaView style={styles.analysisScreen}>
       <Text style={styles.title}>Curl Safe</Text>
       <FlatList
         data={DATA}
@@ -149,7 +150,7 @@ const AnalysisScreen = () => {
           );
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
@@ -170,6 +171,7 @@ const styles = StyleSheet.create({
     textShadowColor: 'black',
     textShadowOffset: {width: -2, height: 1},
     textShadowRadius: 5,
+    marginBottom: 5,
   },
   analysisScreen: {
     backgroundColor: "#455e44",

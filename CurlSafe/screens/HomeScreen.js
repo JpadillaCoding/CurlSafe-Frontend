@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import HomeNav from "../components/HomeNav";
-import { View, Text, StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { View, Text, StyleSheet,SafeAreaView } from "react-native";
+import { useDispatch } from "react-redux";
 import { fetchIngredients } from "../slices/ingredientsSlice";
 
 
@@ -14,13 +14,13 @@ const HomeScreen = () => {
   }, [dispatch])
   
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View>
         <Text style={styles.title}>Curl Safe</Text>
       </View>
       <HomeNav />
 
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -14,6 +14,7 @@ import {
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
@@ -26,6 +27,7 @@ const GalleryScreen = () => {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       quality: 1,
+      allowsMultipleSelection: false,
     });
 
     setImage(result.assets[0].uri);
@@ -65,7 +67,7 @@ const GalleryScreen = () => {
   return (
     <>
       {image ? (
-        <View style={styles.previewContainer}>
+        <SafeAreaView style={styles.previewContainer}>
           <View style={styles.imageContainer}>
             <Image source={{ uri: image }} style={styles.imageStyle} />
             {showLoading && <Loader />}
@@ -74,15 +76,15 @@ const GalleryScreen = () => {
             <Button onPress={pickImage} icon={faRetweet} color={"#8ea48e"} />
             <Button onPress={analyze} icon={faPaperPlane} color={"#8ea48e"} />
           </View>
-        </View>
+        </SafeAreaView>
       ) : (
-        <View style={styles.chooseImageContainer}>
+        <SafeAreaView style={styles.chooseImageContainer}>
           <Text style={styles.chooseImageTitle}>Curl Safe</Text>
           <TouchableOpacity style={styles.chooseImagebutton} onPress={pickImage}>
             <FontAwesomeIcon icon={faImage} color={"#8ea48e"} size={70} />
             <Text style={styles.buttonText}>Choose Image</Text>
           </TouchableOpacity>
-        </View>
+        </SafeAreaView>
       )}
     </>
   );

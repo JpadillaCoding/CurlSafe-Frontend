@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import SearchBar from "../components/SearchBar";
 import { useSelector } from "react-redux";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SearchScreen = () => {
   const [clicked, setClicked] = useState(false);
@@ -45,7 +46,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <View style={styles.searchScreenContainer}>
+    <SafeAreaView style={styles.searchScreenContainer}>
       <Text style={styles.searchScreenTitle}>Curl Safe</Text>
       <SearchBar
         clicked={clicked}
@@ -62,7 +63,7 @@ const SearchScreen = () => {
             <Text style={styles.ingredientsText}>{matchType ? matchType : "No Match"}</Text>
           </View>
         </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
