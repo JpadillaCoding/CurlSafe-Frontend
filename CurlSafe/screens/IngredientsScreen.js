@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../components/Header.js";
 import { useSelector } from "react-redux";
 
 const IngredientsScreen = () => {
@@ -10,7 +11,7 @@ const IngredientsScreen = () => {
 
   return (
     <SafeAreaView style={styles.pageContainer}>
-      <Text style={styles.title}>Curl Safe</Text>
+      <Header />
       {databaseIngredients && (
         <FlatList
           data={databaseIngredients}
