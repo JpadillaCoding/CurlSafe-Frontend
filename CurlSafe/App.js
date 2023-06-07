@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux"; //redux
 import { store } from "./store"; //redux
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import CameraScreen from "./screens/CameraScreen";
@@ -34,7 +34,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <SafeAreaView style={styles.AndroidSafeArea}>
+        <SafeAreaProvider style={styles.AndroidSafeArea}>
           <StatusBar translucent={true} />
           <Stack.Navigator>
             <Stack.Screen
@@ -80,7 +80,7 @@ export default function App() {
             }}
             />
           </Stack.Navigator>
-        </SafeAreaView>
+        </SafeAreaProvider>
       </NavigationContainer>
     </Provider>
   );

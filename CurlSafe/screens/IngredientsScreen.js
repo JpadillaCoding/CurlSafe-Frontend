@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 
 const IngredientsScreen = () => {
@@ -8,7 +9,7 @@ const IngredientsScreen = () => {
   );
 
   return (
-    <View style={styles.pageContainer}>
+    <SafeAreaView style={styles.pageContainer}>
       <Text style={styles.title}>Curl Safe</Text>
       {databaseIngredients && (
         <FlatList
@@ -35,7 +36,7 @@ const IngredientsScreen = () => {
           }}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

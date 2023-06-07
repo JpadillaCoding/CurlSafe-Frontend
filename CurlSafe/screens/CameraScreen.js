@@ -13,6 +13,7 @@ import {
   faPaperPlane,
   faBolt,
 } from "@fortawesome/free-solid-svg-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CameraScreen = () => {
   const [image, setImage] = useState(null);
@@ -99,7 +100,7 @@ const CameraScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {!image ? (
         <Camera
           type={type}
@@ -139,7 +140,7 @@ const CameraScreen = () => {
           </View>
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
