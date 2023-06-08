@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../components/Header.js";
 
 const GalleryScreen = () => {
   const [image, setImage] = useState(null);
@@ -79,7 +80,7 @@ const GalleryScreen = () => {
         </SafeAreaView>
       ) : (
         <SafeAreaView style={styles.chooseImageContainer}>
-          <Text style={styles.chooseImageTitle}>Curl Safe</Text>
+          <Header />
           <TouchableOpacity style={styles.chooseImagebutton} onPress={pickImage}>
             <FontAwesomeIcon icon={faImage} color={"#8ea48e"} size={70} />
             <Text style={styles.buttonText}>Choose Image</Text>
