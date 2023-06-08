@@ -1,14 +1,13 @@
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import {  StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const Header = () => {
+    const navigation = useNavigation();
     return (
-        <View style={styles.headerContainer}>
-            <Text style={styles.title}>Curl Safe</Text>
-            <FontAwesomeIcon icon={faHome} color="white" size={25}/>
-        </View>
+        <TouchableOpacity style={styles.headerContainer}>
+            <Text style={styles.title} onPress={() => navigation.navigate("HomeScreen")}>Curl Safe</Text>
+        </TouchableOpacity>
     )
 }
 
@@ -16,12 +15,10 @@ const styles = StyleSheet.create({
     headerContainer: {
         flex: 0,
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "center",
         flexDirection: "row",
         marginHorizontal: 20,
         marginBottom: 5,
-/*         borderColor: "red",
-        borderWidth: 2, */
     },
     title: {
         fontFamily: "PlayfairDisplay_700Bold_Italic",
@@ -30,7 +27,7 @@ const styles = StyleSheet.create({
         textShadowColor: "black",
         textShadowOffset: { width: -2, height: 1 },
         textShadowRadius: 5,
-      },
+      }
 })
 
 export default Header

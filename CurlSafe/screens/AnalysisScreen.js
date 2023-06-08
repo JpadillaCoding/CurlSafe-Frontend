@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet, FlatList } from "react-native/";
 import { useSelector } from "react-redux";
+import Header from "../components/Header";
 
 const AnalysisScreen = () => {
   const [sulfates, setSulfates] = useState([]);
@@ -126,7 +127,7 @@ const AnalysisScreen = () => {
 
   return (
     <SafeAreaView style={styles.analysisScreen}>
-      <Text style={styles.title}>Curl Safe</Text>
+      <Header />
       <FlatList
         data={DATA}
         keyExtractor={(item) => item.id}
@@ -162,16 +163,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderColor: "black",
     borderWidth: 2,
-  },
-  title: {
-    fontFamily: "PlayfairDisplay_700Bold_Italic",
-    fontSize: 36,
-    textAlign: "center",
-    color: 'white',
-    textShadowColor: 'black',
-    textShadowOffset: {width: -2, height: 1},
-    textShadowRadius: 5,
-    marginBottom: 5,
   },
   analysisScreen: {
     backgroundColor: "#455e44",
