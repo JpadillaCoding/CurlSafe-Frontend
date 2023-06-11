@@ -80,11 +80,7 @@ const CameraScreen = () => {
   };
 
   const flipCamera = () => {
-    if (type === 0) {
-      setType(1);
-    } else {
-      setType(0);
-    }
+    setType(current => (current === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back));
   };
 
   const toggleFlash = () => {
