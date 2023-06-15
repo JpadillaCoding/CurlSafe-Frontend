@@ -2,7 +2,7 @@
   "expo": {
     "name": "CurlSafe",
     "slug": "CurlSafe",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/AppLogo.png",
     "userInterfaceStyle": "light",
@@ -17,11 +17,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.CurlSafe",
-      "buildNumber": "3"
+      "buildNumber": "4"
     },
     "android": {
       "package": "com.CurlSafe",
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
