@@ -2,7 +2,7 @@
   "expo": {
     "name": "CurlSafe",
     "slug": "CurlSafe",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/AppLogo.png",
     "userInterfaceStyle": "light",
@@ -17,11 +17,15 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.CurlSafe",
-      "buildNumber": "4"
+      "buildNumber": "6",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to analyze images for their text to find ingredients",
+        "NSPhotoLibraryUsageDescription": "This app uses your photo library to choose an image to analyze for their text to find ingredients"
+      }
     },
     "android": {
       "package": "com.CurlSafe",
-      "versionCode": 4,
+      "versionCode": 6,
       "adaptiveIcon": {
         "foregroundImage": "./assets/AppLogo.png",
         "backgroundColor": "#455E44"
