@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { setResults } from "../slices/resultsSlice";
 import * as ImagePicker from "expo-image-picker";
+import * as MediaLibrary from 'expo-media-library';
 import Button from "../components/Button";
 import { useDispatch } from "react-redux";
 import Loader from "../components/Loader";
@@ -23,7 +24,7 @@ const GalleryScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const pickImage = async () => {
+ /*  const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if(status === 'granted') {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -39,6 +40,33 @@ const GalleryScreen = () => {
     navigation.navigate('HomeScreen')
   }
 
+  }; */
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status === 'granted') {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        quality: 1,
+        allowsMultipleSelection: false,
+      });
+      if (!result.canceled) {
+        const asset = await MediaLibrary.getAssetInfoAsync(result.assets[0].id);
+        if (asset) {
+          if (asset.isFavorite || Platform.OS === 'android') {
+            // Photo is allowed (or Android), proceed with further operations
+            setImage(result.assets[0].uri);
+          } else {
+            // Photo is not allowed on iOS
+            alert('The selected photo is not allowed. Please select a different photo.');
+          }
+        }
+      }
+    } else {
+      // Permission denied
+      // Handle the denial or show an error message to the user
+      alert('Photo Gallery permission is needed to able to analyze text in photos. Please go to settings to grant permission');
+    }
   };
 
   const analyze = async () => {
