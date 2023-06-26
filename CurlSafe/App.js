@@ -15,6 +15,7 @@ import { useFonts, RobotoCondensed_700Bold_Italic, RobotoCondensed_400Regular,Ro
 import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold_Italic } from '@expo-google-fonts/playfair-display';
 import * as Permissions from 'expo-permissions'
 import RNExitApp from 'react-native-exit-app'
+import { useEffect } from "react";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -46,7 +47,10 @@ export default function App() {
   const exitApp = () => {
     RNExitApp.exitApp()
   }
-
+  useEffect(() => {
+    requestPermissions();
+  })
+  
   return (
     <Provider store={store}>
       <NavigationContainer>
