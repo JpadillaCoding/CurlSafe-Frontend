@@ -14,6 +14,7 @@ import SearchScreen from "./screens/SearchScreen";
 import { useFonts, RobotoCondensed_700Bold_Italic, RobotoCondensed_400Regular,RobotoCondensed_700Bold } from "@expo-google-fonts/roboto-condensed";
 import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold_Italic } from '@expo-google-fonts/playfair-display';
 import * as Permissions from 'expo-permissions'
+import RNExitApp from 'react-native-exit-app'
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -41,6 +42,9 @@ export default function App() {
         ]
       )
     }
+  }
+  const exitApp = () => {
+    RNExitApp.exitApp()
   }
 
   return (
