@@ -24,14 +24,21 @@ const GalleryScreen = () => {
   const navigation = useNavigation();
 
   const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if(status === 'granted') {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       quality: 1,
       allowsMultipleSelection: false,
     });
-
     setImage(result.assets[0].uri);
+  }
+  else {
+    alert('Photo gallery permission is needed to able to analyze text in photos. Please go to settings to grant permission')
+    navigation.navigate('HomeScreen')
+  }
+
   };
 
   const analyze = async () => {
