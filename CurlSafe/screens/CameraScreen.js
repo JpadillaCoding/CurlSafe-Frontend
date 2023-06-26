@@ -19,19 +19,19 @@ const CameraScreen = () => {
   const [image, setImage] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
-  /* const [hasCameraPermission, setHasCameraPermission] = useState(null); */
+  const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [showLoading, setShowLoading] = useState(false);
 
   const cameraRef = useRef(null);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-/*   useEffect(() => {
+  useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
       setHasCameraPermission(cameraStatus.status === "granted");
     })();
-  }, []); */
+  }, []);
 
   const takePicture = async () => {
     if (cameraRef) {
@@ -91,9 +91,10 @@ const CameraScreen = () => {
     }
   };
 
-/*   if (hasCameraPermission === false) {
-    return <Text>No access to camera</Text>;
-  } */
+  if (hasCameraPermission === false) {
+    alert('Camera permission is needed to able to analyze text in photos. Please go to settings to grant permission')
+    navigation.navigate("HomeScreen")
+  }
 
   return (
     <SafeAreaView style={styles.container}>

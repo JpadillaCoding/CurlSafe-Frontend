@@ -3,9 +3,6 @@ import HomeNav from "../components/HomeNav";
 import { View, Text, StyleSheet,SafeAreaView } from "react-native";
 import { useDispatch } from "react-redux";
 import { fetchIngredients } from "../slices/ingredientsSlice";
-import { Camera } from "expo-camera";
-import RNExitApp from 'react-native-exit-app'
-import { Alert } from "react-native";
 
 const HomeScreen = () => {
 
@@ -15,22 +12,6 @@ const HomeScreen = () => {
     dispatch(fetchIngredients())
   }, [dispatch])
 
-  useEffect(() => {
-    requestPermissions()
-  },[])
-
-  const requestPermissions = async () => {
-    const { statusCamera } = await Camera.requestCameraPermissionsAsync()
-    if(statusCamera !== 'granted') {
-      Alert.alert(
-        'Permission Required',
-        'Camera and Photo gallery permission are needed to able to analyze text in photos.',
-        [
-          {text: 'OK', onPress: () => requestPermissions },
-        ]
-      )
-    }
-  }
   
   return (
     <SafeAreaView style={styles.container}>
