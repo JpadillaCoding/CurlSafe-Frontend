@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { setResults } from "../slices/resultsSlice";
 import * as ImagePicker from "expo-image-picker";
-import * as MediaLibrary from 'expo-media-library';
+import * as MediaLibrary from "expo-media-library";
 import Button from "../components/Button";
 import { useDispatch } from "react-redux";
 import Loader from "../components/Loader";
@@ -24,7 +31,7 @@ const GalleryScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
- /*  const pickImage = async () => {
+  /*  const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if(status === 'granted') {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -51,23 +58,33 @@ const GalleryScreen = () => {
         allowsMultipleSelection: false,
       });
       if (!result.canceled) {
-        const asset = await MediaLibrary.getAssetInfoAsync(result.assets[0].id);
+        const asset = MediaLibrary.getAssetInfoAsync(result.assets[0].id).toString();
         if (asset) {
           if (asset.isFavorite || Platform.OS === 'android') {
             // Photo is allowed (or Android), proceed with further operations
             setImage(result.assets[0].uri);
           } else {
             // Photo is not allowed on iOS
-            alert('The selected photo is not allowed. Please select a different photo.');
+            Alert.alert(
+              'Photo not allowed',
+              'The selected photo is not allowed. Please select a different photo.',
+              [
+                { text: 'Cancel' },
+                { text: 'Choose More Photos', onPress: () => pickImage() },
+              ]
+            );
           }
         }
       }
     } else {
       // Permission denied
       // Handle the denial or show an error message to the user
-      alert('Photo Gallery permission is needed to able to analyze text in photos. Please go to settings to grant permission');
+      Alert.alert(
+        'Permission denied',
+        'Photo Gallery permission is needed to be able to analyze text in photos. Please go to settings to grant permission'
+      );
     }
-  };
+  };  
 
   const analyze = async () => {
     setShowLoading(true);
@@ -79,15 +96,11 @@ const GalleryScreen = () => {
     });
     console.log("working on it..");
     await axios
-      .post(
-        "https://curl-safe.herokuapp.com/vision/analyzeImage",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      ) // change to deployed url
+      .post("https://curl-safe.herokuapp.com/vision/analyzeImage", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }) // change to deployed url
       .then((res) => {
         dispatch(setResults(res.data));
         setShowLoading(false);
@@ -95,8 +108,8 @@ const GalleryScreen = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert("Analysis failed")
-        navigation.navigate("HomeScreen")
+        alert("Analysis failed");
+        navigation.navigate("HomeScreen");
       });
   };
 
@@ -116,7 +129,10 @@ const GalleryScreen = () => {
       ) : (
         <SafeAreaView style={styles.chooseImageContainer}>
           <Header />
-          <TouchableOpacity style={styles.chooseImagebutton} onPress={pickImage}>
+          <TouchableOpacity
+            style={styles.chooseImagebutton}
+            onPress={pickImage}
+          >
             <FontAwesomeIcon icon={faImage} color={"#8ea48e"} size={70} />
             <Text style={styles.buttonText}>Choose Image</Text>
           </TouchableOpacity>
@@ -168,12 +184,12 @@ const styles = StyleSheet.create({
   },
   chooseImageTitle: {
     padding: 20,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 36,
     fontFamily: "PlayfairDisplay_700Bold_Italic",
-    color: 'white',
-    textShadowColor: 'black',
-    textShadowOffset: {width: -2, height: 1},
+    color: "white",
+    textShadowColor: "black",
+    textShadowOffset: { width: -2, height: 1 },
     textShadowRadius: 5,
   },
 });
