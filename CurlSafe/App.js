@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux"; //redux
 import { store } from "./store"; //redux
@@ -13,6 +13,7 @@ import IngredientsScreen from "./screens/IngredientsScreen";
 import SearchScreen from "./screens/SearchScreen";
 import { useFonts, RobotoCondensed_700Bold_Italic, RobotoCondensed_400Regular,RobotoCondensed_700Bold } from "@expo-google-fonts/roboto-condensed";
 import { PlayfairDisplay_400Regular, PlayfairDisplay_700Bold_Italic } from '@expo-google-fonts/playfair-display';
+import * as Permissions from 'expo-permissions'
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -26,6 +27,20 @@ export default function App() {
   })
   if(!fontsLoaded) {
     return null
+  }
+
+  const requestPermissions = async () => {
+    const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY, Permissions.CAMERA)
+    if(status !== 'granted') {
+      Alert.alert(
+        'Permission Required',
+        'Please Grant permission to use camera and photo gallery.',
+        [
+          {text: 'OK', onPress: () => requestPermissions() },
+          {text: 'Cancel', onPress: () => exitApp() },
+        ]
+      )
+    }
   }
 
   return (
