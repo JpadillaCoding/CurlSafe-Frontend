@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { setResults } from "../slices/resultsSlice";
@@ -92,7 +92,8 @@ const CameraScreen = () => {
   };
 
   if (hasCameraPermission === false) {
-    return <Text>No access to camera</Text>;
+    alert('Camera permission is needed to able to analyze text in photos. Please go to settings to grant permission')
+    navigation.navigate("HomeScreen")
   }
 
   return (

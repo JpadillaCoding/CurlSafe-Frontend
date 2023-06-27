@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux"; //redux
 import { store } from "./store"; //redux

@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { setResults } from "../slices/resultsSlice";
 import * as ImagePicker from "expo-image-picker";
+import * as MediaLibrary from "expo-media-library";
 import Button from "../components/Button";
 import { useDispatch } from "react-redux";
 import Loader from "../components/Loader";
@@ -24,15 +32,32 @@ const GalleryScreen = () => {
   const navigation = useNavigation();
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      quality: 1,
-      allowsMultipleSelection: false,
-    });
-
-    setImage(result.assets[0].uri);
-  };
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status === 'granted') {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        quality: 1,
+        allowsMultipleSelection: false,
+      });
+      if(result.assets[0].assetId !== null) {
+        setImage(result.assets[0].uri);
+      }
+      else {
+        Alert.alert(
+          'Permission denied',
+          'You have not granted the app access to this photo. Please go to settings to add accessiblity to this photo or grant permission to access all photos.'  
+        )
+        pickImage()
+      }
+    } else {
+      // Permission denied
+      Alert.alert(
+        'Permission denied',
+        'Photo Gallery permission is needed to be able to analyze text in photos. Please go to settings to grant permission'
+      );
+    }
+  };  
 
   const analyze = async () => {
     setShowLoading(true);
@@ -44,15 +69,11 @@ const GalleryScreen = () => {
     });
     console.log("working on it..");
     await axios
-      .post(
-        "https://curl-safe.herokuapp.com/vision/analyzeImage",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      ) // change to deployed url
+      .post("https://curl-safe.herokuapp.com/vision/analyzeImage", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }) // change to deployed url
       .then((res) => {
         dispatch(setResults(res.data));
         setShowLoading(false);
@@ -60,8 +81,8 @@ const GalleryScreen = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert("Analysis failed")
-        navigation.navigate("HomeScreen")
+        alert("Analysis failed");
+        navigation.navigate("HomeScreen");
       });
   };
 
@@ -81,7 +102,10 @@ const GalleryScreen = () => {
       ) : (
         <SafeAreaView style={styles.chooseImageContainer}>
           <Header />
-          <TouchableOpacity style={styles.chooseImagebutton} onPress={pickImage}>
+          <TouchableOpacity
+            style={styles.chooseImagebutton}
+            onPress={pickImage}
+          >
             <FontAwesomeIcon icon={faImage} color={"#8ea48e"} size={70} />
             <Text style={styles.buttonText}>Choose Image</Text>
           </TouchableOpacity>
@@ -133,12 +157,12 @@ const styles = StyleSheet.create({
   },
   chooseImageTitle: {
     padding: 20,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 36,
     fontFamily: "PlayfairDisplay_700Bold_Italic",
-    color: 'white',
-    textShadowColor: 'black',
-    textShadowOffset: {width: -2, height: 1},
+    color: "white",
+    textShadowColor: "black",
+    textShadowOffset: { width: -2, height: 1 },
     textShadowRadius: 5,
   },
 });

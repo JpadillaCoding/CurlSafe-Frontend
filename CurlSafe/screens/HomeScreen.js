@@ -4,7 +4,6 @@ import { View, Text, StyleSheet,SafeAreaView } from "react-native";
 import { useDispatch } from "react-redux";
 import { fetchIngredients } from "../slices/ingredientsSlice";
 
-
 const HomeScreen = () => {
 
   const dispatch = useDispatch()
@@ -12,6 +11,7 @@ const HomeScreen = () => {
   useEffect(() => {
     dispatch(fetchIngredients())
   }, [dispatch])
+
   
   return (
     <SafeAreaView style={styles.container}>
