@@ -31,23 +31,6 @@ const GalleryScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  /*  const pickImage = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if(status === 'granted') {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      quality: 1,
-      allowsMultipleSelection: false,
-    });
-    setImage(result.assets[0].uri);
-  }
-  else {
-    alert('Photo gallery permission is needed to able to analyze text in photos. Please go to settings to grant permission')
-    navigation.navigate('HomeScreen')
-  }
-
-  }; */
   const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status === 'granted') {
@@ -57,28 +40,18 @@ const GalleryScreen = () => {
         quality: 1,
         allowsMultipleSelection: false,
       });
-      if (!result.canceled) {
-        const asset = MediaLibrary.getAssetInfoAsync(result.assets[0].id).toString();
-        if (asset) {
-          if (asset.isFavorite || Platform.OS === 'android') {
-            // Photo is allowed (or Android), proceed with further operations
-            setImage(result.assets[0].uri);
-          } else {
-            // Photo is not allowed on iOS
-            Alert.alert(
-              'Photo not allowed',
-              'The selected photo is not allowed. Please select a different photo.',
-              [
-                { text: 'Cancel' },
-                { text: 'Choose More Photos', onPress: () => pickImage() },
-              ]
-            );
-          }
-        }
+      if(result.assets[0].assetId !== null) {
+        setImage(result.assets[0].uri);
+      }
+      else {
+        Alert.alert(
+          'Permission denied',
+          'You have not granted the app access to this photo. Please go to settings to add accessiblity to this photo or grant permission to access all photos.'  
+        )
+        pickImage()
       }
     } else {
       // Permission denied
-      // Handle the denial or show an error message to the user
       Alert.alert(
         'Permission denied',
         'Photo Gallery permission is needed to be able to analyze text in photos. Please go to settings to grant permission'
