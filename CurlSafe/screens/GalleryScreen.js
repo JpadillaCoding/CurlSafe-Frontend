@@ -40,7 +40,7 @@ const GalleryScreen = () => {
         quality: 1,
         allowsMultipleSelection: false,
       });
-      if(result.assets[0].assetId !== null) {
+      if(result.assets[0].assetId !== null || Platform.OS === 'android') {
         setImage(result.assets[0].uri);
       }
       else {
