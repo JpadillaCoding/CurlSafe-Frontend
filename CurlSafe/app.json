@@ -24,10 +24,6 @@
     "android": {
       "package": "com.CurlSafe",
       "versionCode": 7,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/AppLogo.png",
-        "backgroundColor": "#455E44"
-      },
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
