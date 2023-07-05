@@ -53,7 +53,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Allow $(PRODUCT_NAME) to save photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app uses your photo library to choose an image to analyze for their text to find ingredients</string>
+	<string>This app uses your photo library to choose an image to analyze images for their text to find ingredients</string>
 	<key>UILaunchStoryboardName</key>
 	<string>SplashScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
