@@ -17,8 +17,8 @@
       "bundleIdentifier": "com.CurlSafe",
       "buildNumber": "8",
       "infoPlist": {
-        "NSCameraUsageDescription": "This app uses the camera to analyze images for their text to find ingredients",
-        "NSPhotoLibraryUsageDescription": "This app uses your photo library to choose an image to analyze for their text to find ingredients"
+        "NSPhotoLibraryUsageDescription": "This app uses your photo library to choose an image to analyze for their text to find ingredients",
+        "NSCameraUsageDescription": "This app uses the camera to analyze images for their text to find ingredients"
       }
     },
     "android": {
