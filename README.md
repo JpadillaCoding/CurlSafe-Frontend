@@ -33,9 +33,11 @@ The Expo package made testing code extremely easy. It also has many packages tha
 
 ## Screenshots
 
-<img src="CurlSafe/assets/Homepage.jpg" alt="Curl safe Homepage" height="300" width="auto">
-<img src="CurlSafe/assets/Analyzer.jpg" alt="Curl safe analyzer page" height="300" width="auto">
-<img src="CurlSafe/assets/Search.jpg" alt="Curl safe Ingredients page" height="300" width="auto">
+<p float="left">
+    <img src="CurlSafe/assets/Homepage.jpg" alt="Curl safe Homepage" height="300" width="auto">
+    <img src="CurlSafe/assets/Analyzer.jpg" alt="Curl safe analyzer page" height="300" width="auto">
+    <img src="CurlSafe/assets/Search.jpg" alt="Curl safe Ingredients page" height="300" width="auto">
+</p>
 
 ## Bugs Spreadsheet
 
