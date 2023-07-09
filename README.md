@@ -1,10 +1,12 @@
 # Curl Safe - Front End
 An app that uses Google's VisionAI API to scan hair product ingredient labels. In the curly/wavy hair world there is a movement called the Curly Girl Method (CG Method). The Method is used to make healthy hair specifically for curly/ wavy hair individuals. CG Method consists of not using hair products that contain certain ingredients- Sulfates, Silicones, Short Chain Alcohols, Parabens, Formaldehydes, Soaps, Waxes, Mineral oils. The issue is, there are over 100 of these ingredients! How can an individual check a tiny ingredients label and make sure to check for each one? 
 This is exactly what Curl Safe solves. 
+
 Check out the [Backend](https://github.com/JpadillaCoding/CurlSafe-Backend)!
 
 ## Installation 
 Available on the [Google Play store](https://play.google.com/store/apps/details?id=com.CurlSafe)!
+
 Available on the [App Store](https://apps.apple.com/us/app/curlsafe/id6450194570)!
 
 ## Technologies 
